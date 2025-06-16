@@ -8,23 +8,35 @@ import Services from './components/Services'
 import Features from './components/Features'
 import Customers from './components/Customers'
 import Contact from './components/Contact'
+import ScrollToTop from './components/ScrollToTop'
 
 const App = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-grow">
-        <Routes>
-          <Route path="/" element={<Hero />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/features" element={<Features />} />
-          <Route path="/customers" element={<Customers />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </main>
-      <Footer />
-    </div>
+    <>
+      <ScrollToTop />
+      <div className="overflow-x-hidden min-h-screen w-full bg-gradient-to-br from-blue-50 via-white to-blue-100 text-gray-800">
+        <Navbar />
+        <div className="pt-20">
+          <Routes>
+            <Route path="/" element={
+              <>
+                <Hero />
+                <About />
+                {/* <Services />
+                <Features /> */}
+                <Customers />
+                <Contact />
+              </>
+            } />
+            <Route path='/about' element={<About/>} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/customers" element={<Customers />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
+    </>
   )
 }
 
