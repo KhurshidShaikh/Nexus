@@ -22,8 +22,8 @@ const App = () => {
               <>
                 <Hero />
                 <About />
-                {/* <Services />
-                <Features /> */}
+                <Services />
+                <Features />
                 <Customers />
                 <Contact />
               </>
@@ -40,4 +40,4 @@ const App = () => {
   )
 }
 
-export default App
+export default App;
