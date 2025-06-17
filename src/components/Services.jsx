@@ -98,92 +98,147 @@ const Services = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 5000,
     pauseOnHover: true,
+    arrows: true,
+    centerMode: true,
+    centerPadding: '60px',
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1280,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
-        },
+          centerMode: true,
+          centerPadding: '40px',
+        }
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
+          centerMode: true,
+          centerPadding: '20px',
+          arrows: false,
+        }
+      }
     ],
   };
 
   return (
     <section
-      className="relative bg-gradient-to-br from-gray-50 via-white to-green-50 py-20 px-6 md:px-16 overflow-hidden"
+      className="relative bg-gradient-to-br from-gray-50 via-white to-green-50 py-20 px-4 md:px-8 lg:px-16 overflow-hidden"
       id="services"
     >
       {/* Custom Slider Styles */}
       <style>{`
         .services-slider {
-          margin: 0 60px;
+          padding: 20px 0 80px;
+          margin: 0 -12px;
+          position: relative;
         }
-        .services-slider .slick-dots {
-          bottom: -60px;
+        
+        .services-slider .slick-list {
+          margin: 0 -12px;
+          padding: 20px 12px;
+          overflow: visible;
         }
-        .services-slider .slick-dots li button:before {
-          font-size: 14px;
-          color: #059669;
+        
+        .services-slider .slick-track {
+          display: flex;
+          gap: 24px;
+          padding: 10px 0;
+        }
+        
+        .services-slider .slick-slide {
+          height: auto;
+          padding: 0 12px;
           opacity: 0.5;
+          transform: scale(0.9);
+          transition: all 0.3s ease;
         }
+        
+        .services-slider .slick-slide.slick-active {
+          opacity: 1;
+          transform: scale(1);
+        }
+        
+        .services-slider .slick-slide > div {
+          height: 100%;
+        }
+        
+        .services-slider .slick-dots {
+          bottom: 40px;
+        }
+        
+        .services-slider .slick-dots li {
+          margin: 0 6px;
+        }
+        
+        .services-slider .slick-dots li button:before {
+          font-size: 10px;
+          color: #059669;
+          opacity: 0.3;
+          transition: all 0.3s ease;
+        }
+        
         .services-slider .slick-dots li.slick-active button:before {
           opacity: 1;
           color: #059669;
+          transform: scale(1.2);
         }
+        
         .services-slider .slick-prev,
         .services-slider .slick-next {
           z-index: 10;
-          width: 50px;
-          height: 50px;
+          width: 40px;
+          height: 40px;
           background: white;
           border-radius: 50%;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-          border: 2px solid #059669;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          border: 1px solid #e5e7eb;
+          transition: all 0.3s ease;
         }
+        
         .services-slider .slick-prev {
-          left: -60px;
+          left: -20px;
         }
+        
         .services-slider .slick-next {
-          right: -60px;
+          right: -20px;
         }
+        
         .services-slider .slick-prev:hover,
         .services-slider .slick-next:hover {
           background: #059669;
+          border-color: #059669;
         }
+        
         .services-slider .slick-prev:before,
         .services-slider .slick-next:before {
-          font-size: 18px;
+          font-size: 16px;
           color: #059669;
-          font-weight: bold;
+          opacity: 1;
+          transition: all 0.3s ease;
         }
+        
         .services-slider .slick-prev:hover:before,
         .services-slider .slick-next:hover:before {
           color: white;
         }
-        .services-slider .slick-slide > div {
-          height: 100%;
-          padding: 0 12px;
-        }
-        .services-slider .slick-track {
-          display: flex;
-          align-items: stretch;
-        }
-        .services-slider .slick-slide {
-          display: flex;
-          height: auto;
-        }
-        .services-slider .slick-list {
-          margin: 0 -12px;
+
+        @media (max-width: 768px) {
+          .services-slider {
+            padding: 10px 0 60px;
+          }
+          
+          .services-slider .slick-dots {
+            bottom: 30px;
+          }
+          
+          .services-slider .slick-slide {
+            opacity: 1;
+            transform: scale(1);
+          }
         }
       `}</style>
       {/* Background Pattern */}
@@ -199,101 +254,93 @@ const Services = () => {
       <div className="max-w-7xl mx-auto relative">
         {/* Header Section */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-green-700 via-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-green-700 via-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">
             Precision-Engineered Solutions
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Where Innovation Converges with Operational Excellence -
             Transforming Industries Through Advanced Energy Solutions
           </p>
         </div>
 
         {/* Services Slider */}
-        <div className="services-slider h-full">
+        <div className="services-slider">
           <Slider {...sliderSettings}>
             {services.map((service, index) => (
-              <div key={index}>
+              <div key={index} className="h-full">
                 <div
-                  className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-700 overflow-hidden border border-gray-100 h-full flex flex-col min-h-[720px]"
+                  className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 h-full flex flex-col"
                   onMouseEnter={() => setHoveredCard(index)}
                   onMouseLeave={() => setHoveredCard(null)}
                 >
-                  {/* Gradient Overlay */}
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
-                  ></div>
-
-                  {/* Image Section with Overlay */}
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-
-                    {/* Floating Icon */}
-                    <div className="absolute top-4 right-4 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-2xl flex items-center justify-center text-2xl shadow-lg">
-                      {service.icon}
-                    </div>
-
-                    {/* Stats Badge */}
-                    <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold text-gray-800 shadow-lg">
-                      {service.stats}
-                    </div>
-                  </div>
-
-                  {/* Content Section */}
-                  <div className="p-6 relative">
-                    <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-green-700 transition-colors duration-300 flex flex-col flex-grow">
-                      {service.title}
-                    </h3>
-
-                    {/* Offerings */}
-                    <div className="space-y-3 mb-6">
-                      {service.offerings.map((offering, idx) => (
-                        <div
-                          key={idx}
-                          className="flex items-start gap-3 flex-grow"
-                        >
-                          <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></div>
-                          <p className="text-gray-700 text-sm leading-relaxed">
-                            {offering}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Highlight Quote */}
-                    <div className="relative">
-                      <div className="absolute -left-2 top-2 text-4xl text-green-200 font-serif">
-                        "
+                  {/* Card Content */}
+                  <div className="flex flex-col h-full">
+                    {/* Image Section */}
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                      
+                      {/* Floating Icon */}
+                      <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center text-xl shadow-lg">
+                        {service.icon}
                       </div>
-                      <blockquote className="text-sm italic text-green-800 bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-2xl border-l-4 border-green-500 relative">
-                        <p className="relative z-10">{service.highlight}</p>
-                      </blockquote>
+                      
+                      {/* Stats Badge */}
+                      <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold text-gray-800 shadow-lg">
+                        {service.stats}
+                      </div>
                     </div>
 
-                    {/* Applications */}
-                    <div className="mt-6 pt-4 border-t border-gray-100">
-                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2  flex flex-grow">
-                        Applications
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {service.applications.map((app, idx) => (
-                          <span
-                            key={idx}
-                            className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full font-medium hover:bg-green-100 hover:text-green-700 transition-colors duration-200"
-                          >
-                            {app}
-                          </span>
+                    {/* Content Section */}
+                    <div className="p-6 flex flex-col flex-grow">
+                      <h3 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-green-700 transition-colors duration-300">
+                        {service.title}
+                      </h3>
+
+                      {/* Offerings */}
+                      <div className="space-y-2 mb-4 flex-grow">
+                        {service.offerings.map((offering, idx) => (
+                          <div key={idx} className="flex items-start gap-2">
+                            <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></div>
+                            <p className="text-gray-600 text-sm leading-relaxed">
+                              {offering}
+                            </p>
+                          </div>
                         ))}
+                      </div>
+
+                      {/* Highlight Quote */}
+                      <div className="relative mb-4">
+                        <blockquote className="text-sm italic text-green-800 bg-green-50/50 p-3 rounded-xl border-l-2 border-green-500">
+                          {service.highlight}
+                        </blockquote>
+                      </div>
+
+                      {/* Applications */}
+                      <div className="mt-auto pt-4 border-t border-gray-100">
+                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                          Applications
+                        </p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {service.applications.map((app, idx) => (
+                            <span
+                              key={idx}
+                              className="px-2 py-0.5 bg-gray-100 text-gray-700 text-xs rounded-full font-medium hover:bg-green-100 hover:text-green-700 transition-colors duration-200"
+                            >
+                              {app}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
 
                     {/* Hover Effect Arrow */}
                     <div
-                      className={`absolute bottom-6 right-6 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white transition-all duration-300 ${
+                      className={`absolute bottom-4 right-4 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white transition-all duration-300 ${
                         hoveredCard === index
                           ? "opacity-100 translate-x-0"
                           : "opacity-0 translate-x-4"

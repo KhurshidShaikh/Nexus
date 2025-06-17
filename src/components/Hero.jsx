@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Play, ChevronDown } from 'lucide-react';
 
 import img1 from "../assets/55.jpg"
@@ -8,23 +8,84 @@ import img3 from "../assets/59.jpg"
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
-  const [bubbles, setBubbles] = useState([]);
   const [isHovering, setIsHovering] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [textHover, setTextHover] = useState(false);
   const containerRef = useRef(null);
-  
-  // Mouse position tracking
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  
-  // Smooth spring animations for cursor following
-  const springX = useSpring(mouseX, { stiffness: 300, damping: 30 });
-  const springY = useSpring(mouseY, { stiffness: 300, damping: 30 });
+  const animationFrameRef = useRef();
 
-  useEffect(() => {
-    setIsVisible(true);
+  // Enhanced blob creation with attractive green colors
+  const createBlob = (x, y) => {
+    const blob = document.createElement('div');
+    blob.className = 'gooey-blob';
+    const colors = [
+      'radial-gradient(circle, rgba(34, 197, 94, 0.3), rgba(22, 163, 74, 0.1))',
+      'radial-gradient(circle, rgba(16, 185, 129, 0.3), rgba(5, 150, 105, 0.1))',
+      'radial-gradient(circle, rgba(52, 211, 153, 0.25), rgba(6, 182, 212, 0.08))',
+      'radial-gradient(circle, rgba(101, 163, 13, 0.25), rgba(65, 131, 20, 0.08))'
+    ];
     
-    // Auto-slide functionality
+    blob.style.cssText = `
+      position: absolute;
+      width: ${Math.random() * 80 + 40}px;
+      height: ${Math.random() * 80 + 40}px;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      border-radius: 50%;
+      pointer-events: none;
+      left: ${x}px;
+      top: ${y}px;
+      transform: translate(-50%, -50%);
+      filter: blur(${Math.random() * 2 + 1}px);
+      z-index: 1;
+    `;
+    
+    containerRef.current?.appendChild(blob);
+    
+    // Slower, more elegant animation
+    const animation = blob.animate([
+      {
+        transform: 'translate(-50%, -50%) scale(0) rotate(0deg)',
+        opacity: 0
+      },
+      {
+        transform: `translate(-50%, -50%) scale(1) rotate(${Math.random() * 180}deg) translate(${(Math.random() - 0.5) * 80}px, ${-Math.random() * 100 - 30}px)`,
+        opacity: 0.8,
+        offset: 0.4
+      },
+      {
+        transform: `translate(-50%, -50%) scale(0.2) rotate(${Math.random() * 360}deg) translate(${(Math.random() - 0.5) * 150}px, ${-Math.random() * 200 - 80}px)`,
+        opacity: 0
+      }
+    ], {
+      duration: Math.random() * 4000 + 3000, // Slower duration: 3-7 seconds
+      easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' // Smoother easing
+    });
+    
+    animation.onfinish = () => {
+      blob.remove();
+    };
+  };
+
+  // Enhanced mouse move handler with reduced frequency
+  const handleMouseMove = (e) => {
+    if (!containerRef.current) return;
+    
+    const rect = containerRef.current.getBoundingClientRect();
+    const newMousePos = {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    };
+    
+    setMousePos(newMousePos);
+    
+    // Less frequent blob creation for slower animation
+    if (isHovering && Math.random() > 0.92) { // Reduced from 0.85 to 0.92
+      createBlob(newMousePos.x, newMousePos.y);
+    }
+  };
+
+  // Auto-slide functionality
+  useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % 3);
     }, 5000);
@@ -32,42 +93,32 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Generate random bubbles
-  const generateBubble = (x, y) => {
-    const newBubble = {
-      id: Date.now() + Math.random(),
-      x: x + (Math.random() - 0.5) * 200,
-      y: y + (Math.random() - 0.5) * 200,
-      size: Math.random() * 100 + 50,
-      delay: Math.random() * 0.5,
-      duration: Math.random() * 2 + 1.5,
-      opacity: Math.random() * 0.6 + 0.2
+  // Enhanced background animation with green theme
+  useEffect(() => {
+    const blobs = document.querySelectorAll('.background-blob');
+    
+    const animateBlobs = () => {
+      blobs.forEach((blob, index) => {
+        const time = Date.now() * 0.0008; // Slightly slower
+        const x = Math.sin(time * 0.3 + index * 0.5) * 35 + Math.cos(time * 0.2 + index) * 18;
+        const y = Math.cos(time * 0.4 + index * 0.3) * 25 + Math.sin(time * 0.25 + index) * 12;
+        const scale = 1 + Math.sin(time * 0.5 + index * 0.7) * 0.15;
+        const rotate = time * 8 + index * 25;
+        
+        blob.style.transform = `translate(${x}px, ${y}px) scale(${scale}) rotate(${rotate}deg)`;
+      });
+      
+      animationFrameRef.current = requestAnimationFrame(animateBlobs);
     };
     
-    setBubbles(prev => [...prev.slice(-8), newBubble]);
+    animateBlobs();
     
-    // Remove bubble after animation
-    setTimeout(() => {
-      setBubbles(prev => prev.filter(b => b.id !== newBubble.id));
-    }, newBubble.duration * 1000 + 500);
-  };
-
-  // Handle mouse movement
-  const handleMouseMove = (e) => {
-    if (!containerRef.current) return;
-    
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    mouseX.set(x);
-    mouseY.set(y);
-    
-    // Generate bubbles randomly while moving
-    if (isHovering && Math.random() > 0.85) {
-      generateBubble(x, y);
-    }
-  };
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, []);
 
   const slides = [
     {
@@ -101,241 +152,66 @@ const Hero = () => {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      {/* SVG Filter for Gooey Effect */}
+      {/* Enhanced SVG Filters */}
       <svg className="absolute inset-0 w-0 h-0">
         <defs>
           <filter id="gooey" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur"/>
-            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 25 -8" result="gooey"/>
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 25 -10" result="gooey"/>
             <feBlend in="SourceGraphic" in2="gooey"/>
           </filter>
-          <filter id="text-gooey">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
-            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -5" result="gooey"/>
-            <feBlend in="SourceGraphic" in2="gooey"/>
-          </filter>
-          <filter id="letter-wave">
-            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise"/>
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="10"/>
-          </filter>
-          <filter id="gooey-strong" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur"/>
-            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -12" result="gooey"/>
-            <feBlend in="SourceGraphic" in2="gooey"/>
-          </filter>
-          <filter id="gooey-light" x="-20%" y="-20%" width="140%" height="140%">
+          <filter id="textGooey" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
-            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 12 -5" result="gooey"/>
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -6" result="gooey"/>
             <feBlend in="SourceGraphic" in2="gooey"/>
           </filter>
-          <filter id="wave-distort">
-            <feTurbulence baseFrequency="0.01" numOctaves="5" result="noise"/>
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="8"/>
-          </filter>
-          <filter id="liquid-blur">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
-            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 15 -5" result="liquid"/>
-            <feBlend in="SourceGraphic" in2="liquid"/>
+          <filter id="textHoverGooey" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8" result="gooey"/>
+            <feBlend in="SourceGraphic" in2="gooey"/>
           </filter>
         </defs>
       </svg>
 
-      {/* Cursor Following Bubble - Only on hero background */}
-      <AnimatePresence>
-        {isHovering && (
-          <motion.div
-            className="fixed pointer-events-none z-30 cursor-none"
-            style={{
-              x: springX,
-              y: springY,
-            }}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0 }}
-          >
-            <motion.div
-              className="w-6 h-6 bg-gradient-to-r from-green-400/60 to-emerald-500/60 rounded-full -translate-x-1/2 -translate-y-1/2 backdrop-blur-sm"
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.6, 1, 0.6]
-              }}
-              transition={{ 
-                duration: 2, 
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            {/* Ripple effect */}
-            <motion.div
-              className="absolute w-12 h-12 border border-green-400/30 rounded-full -translate-x-1/2 -translate-y-1/2 top-0 left-0"
-              animate={{
-                scale: [0, 2],
-                opacity: [0.5, 0]
-              }}
-              transition={{ 
-                duration: 1.5, 
-                repeat: Infinity,
-                ease: "easeOut"
-              }}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Enhanced Animated Bubbles with Water Effect */}
-      <div className="fixed inset-0 pointer-events-none" style={{ filter: 'url(#gooey-strong)' }}>
-        <AnimatePresence>
-          {bubbles.map((bubble) => (
-            <React.Fragment key={bubble.id}>
-              {/* Main bubble */}
-              <motion.div
-                className="absolute rounded-full bg-gradient-to-r from-green-400/40 to-emerald-500/40"
-                style={{
-                  left: bubble.x,
-                  top: bubble.y,
-                  width: bubble.size,
-                  height: bubble.size,
-                }}
-                initial={{ 
-                  scale: 0, 
-                  opacity: 0,
-                  x: "-50%",
-                  y: "-50%"
-                }}
-                animate={{ 
-                  scale: [0, 1.3, 1, 1.1, 1],
-                  opacity: [0, bubble.opacity * 0.8, bubble.opacity, 0],
-                  y: [0, -bubble.size * 1.5, -bubble.size * 3, -bubble.size * 4],
-                  x: [(Math.random() - 0.5) * 50, (Math.random() - 0.5) * 100, (Math.random() - 0.5) * 150],
-                  rotate: [0, 180, 360]
-                }}
-                exit={{ 
-                  scale: 0, 
-                  opacity: 0 
-                }}
-                transition={{ 
-                  duration: bubble.duration,
-                  delay: bubble.delay,
-                  ease: "easeOut"
-                }}
-              />
-              {/* Secondary smaller bubbles */}
-              {[...Array(3)].map((_, i) => (
-                <motion.div
-                  key={`${bubble.id}-${i}`}
-                  className="absolute rounded-full bg-gradient-to-r from-green-300/20 to-emerald-400/20"
-                  style={{
-                    left: bubble.x + (Math.random() - 0.5) * bubble.size,
-                    top: bubble.y + (Math.random() - 0.5) * bubble.size,
-                    width: bubble.size * 0.3,
-                    height: bubble.size * 0.3,
-                  }}
-                  initial={{ 
-                    scale: 0, 
-                    opacity: 0,
-                    x: "-50%",
-                    y: "-50%"
-                  }}
-                  animate={{ 
-                    scale: [0, 1, 0.8, 0],
-                    opacity: [0, 0.6, 0.4, 0],
-                    y: [0, -bubble.size * 2, -bubble.size * 3.5],
-                    x: [(Math.random() - 0.5) * 80]
-                  }}
-                  transition={{ 
-                    duration: bubble.duration * 0.8,
-                    delay: bubble.delay + i * 0.1,
-                    ease: "easeOut"
-                  }}
-                />
-              ))}
-            </React.Fragment>
-          ))}
-        </AnimatePresence>
-      </div>
-
-      {/* Background with Enhanced Liquid Effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-green-100/30 via-white/40 to-emerald-100/30">
-        <div className="absolute inset-0 bg-white/20"></div>
-        
-        {/* Animated background elements with enhanced gooey filter */}
-        <div style={{ filter: 'url(#gooey-strong)' }}>
-          <motion.div 
-            className="absolute top-20 left-10 w-40 h-40 bg-green-500/20 rounded-full blur-sm"
-            animate={{
-              scale: [1, 1.3, 1],
-              opacity: [0.3, 0.7, 0.3],
-              x: [0, 30, 0],
-              y: [0, -20, 0],
-              rotate: [0, 180, 360]
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div 
-            className="absolute bottom-20 right-10 w-48 h-48 bg-emerald-500/20 rounded-full blur-sm"
-            animate={{
-              scale: [1, 1.4, 1],
-              opacity: [0.2, 0.6, 0.2],
-              x: [0, -40, 0],
-              y: [0, 25, 0],
-              rotate: [0, -180, -360]
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-          <motion.div 
-            className="absolute top-1/2 left-1/4 w-32 h-32 bg-green-400/20 rounded-full blur-sm"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.4, 0.8, 0.4],
-              rotate: [0, 360, 720],
-              x: [0, 20, 0],
-              y: [0, -20, 0]
-            }}
-            transition={{
-              duration: 12,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
+      {/* Enhanced Custom Cursor with Green Theme */}
+      <div 
+        className="fixed pointer-events-none z-50 transition-all duration-300 ease-out"
+        style={{
+          left: mousePos.x,
+          top: mousePos.y,
+          transform: 'translate(-50%, -50%)',
+          opacity: isHovering ? 1 : 0
+        }}
+      >
+        <div className="relative">
+          <div className="w-5 h-5 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full animate-pulse" />
+          <div className="absolute inset-0 w-5 h-5 bg-gradient-to-r from-green-300 to-emerald-400 rounded-full animate-ping opacity-60" />
+          <div className="absolute top-1/2 left-1/2 w-1.5 h-1.5 bg-white rounded-full transform -translate-x-1/2 -translate-y-1/2" />
         </div>
       </div>
 
-      {/* Enhanced Floating Liquid Blobs */}
-      <div className="absolute inset-0 pointer-events-none" style={{ filter: 'url(#gooey)' }}>
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-gradient-to-r from-green-300/15 to-emerald-400/15"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 300 + 150}px`,
-              height: `${Math.random() * 300 + 150}px`,
-            }}
-            animate={{
-              x: [0, Math.random() * 600 - 300, 0],
-              y: [0, Math.random() * 600 - 300, 0],
-              scale: [1, Math.random() * 0.6 + 0.7, 1],
-              opacity: [0.1, 0.4, 0.1],
-              rotate: [0, Math.random() * 360, 720]
-            }}
-            transition={{
-              duration: Math.random() * 15 + 15,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: Math.random() * 5
-            }}
-          />
-        ))}
+      {/* Enhanced Background Blobs with Green Theme */}
+      <div className="absolute inset-0" style={{ filter: 'url(#gooey)' }}>
+        {[...Array(8)].map((_, i) => {
+          const colors = [
+            'from-green-400/20 to-emerald-500/10',
+            'from-emerald-400/20 to-green-500/10',
+            'from-teal-400/15 to-green-500/8',
+            'from-lime-400/18 to-emerald-500/9'
+          ];
+          return (
+            <div
+              key={i}
+              className={`background-blob absolute rounded-full bg-gradient-to-r backdrop-blur-sm ${colors[i % colors.length]}`}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                width: `${Math.random() * 200 + 80}px`,
+                height: `${Math.random() * 200 + 80}px`,
+              }}
+            />
+          );
+        })}
       </div>
 
       {/* Main Content */}
@@ -346,17 +222,16 @@ const Hero = () => {
             <motion.button
               key={slide.number}
               onClick={() => setCurrentSlide(index)}
-              className={`transform transition-all duration-500 cursor-pointer ${
+              className={`transform transition-all duration-300 cursor-pointer ${
                 currentSlide === index 
                   ? 'text-green-600 scale-110' 
                   : 'text-gray-400 hover:text-green-500'
               }`}
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.95 }}
-              onHoverStart={() => generateBubble(60, window.innerHeight / 2)}
             >
               <div className="text-sm font-light mb-1">{String(index + 1).padStart(2, '0')}</div>
-              <div className={`w-1 transition-all duration-500 ${
+              <div className={`w-1 transition-all duration-300 ${
                 currentSlide === index ? 'h-8 bg-green-500' : 'h-4 bg-gray-200'
               }`}></div>
             </motion.button>
@@ -367,165 +242,94 @@ const Hero = () => {
         <div className="flex-1 flex items-center px-6 lg:px-16">
           <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
             
-            {/* Left Content */}
+            {/* Left Content with Enhanced Gooey Text */}
             <div className="space-y-8 w-full">
               <motion.div
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.2 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                 className="w-full"
+                onMouseEnter={() => setTextHover(true)}
+                onMouseLeave={() => setTextHover(false)}
               >
                 <div className="flex items-center space-x-4 mb-6">
-                <motion.span 
-                    className="text-6xl lg:text-8xl font-light text-green-100 relative"
+                  <motion.span 
+                    className="text-6xl lg:text-8xl font-light text-green-100 transition-all duration-500"
+                    style={{ 
+                      filter: textHover ? 'url(#textHoverGooey)' : 'url(#textGooey)',
+                      transform: textHover ? 'scale(1.05)' : 'scale(1)'
+                    }}
                     animate={{ 
-                      textShadow: [
-                        "0 0 20px rgba(34, 197, 94, 0.3)",
-                        "0 0 40px rgba(34, 197, 94, 0.5)",
-                        "0 0 20px rgba(34, 197, 94, 0.3)"
+                      textShadow: textHover ? [
+                        '0 0 20px rgba(34, 197, 94, 0.4)',
+                        '0 0 30px rgba(22, 163, 74, 0.6)',
+                        '0 0 20px rgba(34, 197, 94, 0.4)'
+                      ] : [
+                        '0 0 10px rgba(34, 197, 94, 0.3)',
+                        '0 0 20px rgba(22, 163, 74, 0.4)',
+                        '0 0 10px rgba(34, 197, 94, 0.3)'
                       ]
                     }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                    style={{ filter: 'url(#gooey)' }}
+                    transition={{ duration: textHover ? 1.5 : 2, repeat: Infinity }}
                   >
                     {slides[currentSlide].number}
-                    
-                    {/* Bubble effect around number */}
-                    {[...Array(4)].map((_, i) => (
-                      <motion.div
-                        key={i}
-                        className="absolute w-3 h-3 bg-green-400/30 rounded-full"
-                        style={{
-                          left: `${20 + i * 20}%`,
-                          top: `${20 + (i % 2) * 40}%`,
-                        }}
-                        animate={{
-                          scale: [0.5, 1.2, 0.5],
-                          opacity: [0.3, 0.8, 0.3],
-                          rotate: [0, 180, 360]
-                        }}
-                        transition={{
-                          duration: 2 + i * 0.5,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                          delay: i * 0.3
-                        }}
-                      />
-                    ))}
                   </motion.span>
-                  <div className="text-sm text-green-600 uppercase tracking-wider font-medium">
+                  <motion.div 
+                    className="text-sm text-green-600 uppercase tracking-wider font-medium transition-all duration-300"
+                    style={{ 
+                      filter: textHover ? 'url(#textGooey)' : 'none',
+                      transform: textHover ? 'scale(1.1)' : 'scale(1)'
+                    }}
+                    whileHover={{ scale: 1.05 }}
+                  >
                     {slides[currentSlide].category}
-                  </div>
+                  </motion.div>
                 </div>
                 
-                <h1 className="text-4xl lg:text-6xl font-medium text-gray-800 leading-tight mb-6 relative">
-                  {slides[currentSlide].title.split(' ').map((word, wordIndex) => (
-                    <motion.span
-                      key={wordIndex}
-                      className="inline-block relative mr-4"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ 
-                        duration: 0.6, 
-                        delay: wordIndex * 0.1,
-                        type: "spring",
-                        stiffness: 100
-                      }}
-                      style={{ 
-                        filter: 'url(#text-gooey)',
-                        fontFamily: "'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-                        letterSpacing: '-0.01em',
-                        fontWeight: 500,
-                        whiteSpace: 'normal',
-                        wordBreak: 'keep-all'
-                      }}
-                    >
-                      {word === 'Uncompromised' ? (
-                        <span style={{ display: 'inline-block' }}>{word}</span>
-                      ) : (
-                        word.split('').map((letter, letterIndex) => (
-                          <motion.span
-                            key={`${wordIndex}-${letterIndex}`}
-                            className="inline-block relative"
-                            whileHover={{
-                              y: [-2, 2, -2],
-                              scale: [1, 1.05, 1],
-                              transition: {
-                                duration: 0.3,
-                                ease: "easeInOut"
-                              }
-                            }}
-                            style={{
-                              transformOrigin: "center center",
-                              display: "inline-block",
-                              padding: "0 0.01em"
-                            }}
-                          >
-                            <motion.div
-                              className="absolute inset-0 bg-gradient-to-r from-green-400/5 to-emerald-500/5 rounded-sm -z-10"
-                              initial={{ opacity: 0 }}
-                              whileHover={{
-                                opacity: [0.05, 0.15, 0.05],
-                                scale: [1, 1.05, 1],
-                                transition: {
-                                  duration: 0.6,
-                                  ease: "easeInOut"
-                                }
-                              }}
-                              style={{ filter: 'url(#gooey-light)' }}
-                            />
-                            <motion.span
-                              className="relative z-10"
-                              animate={{
-                                y: [0, -0.5, 0, 0.5, 0],
-                                transition: {
-                                  duration: 3 + letterIndex * 0.1,
-                                  repeat: Infinity,
-                                  ease: "easeInOut",
-                                  delay: letterIndex * 0.03
-                                }
-                              }}
-                            >
-                              {letter}
-                            </motion.span>
-                          </motion.span>
-                        ))
-                      )}
-                      {' '}
-                    </motion.span>
-                  ))}
-                </h1>
+                <motion.h1 
+                  className="text-4xl lg:text-6xl font-medium text-gray-800 leading-tight mb-6 transition-all duration-500"
+                  style={{ 
+                    filter: textHover ? 'url(#textHoverGooey)' : 'url(#textGooey)',
+                    transform: textHover ? 'scale(1.02)' : 'scale(1)'
+                  }}
+                  animate={{ 
+                    textShadow: textHover ? [
+                      '0 0 15px rgba(34, 197, 94, 0.3)',
+                      '0 0 25px rgba(22, 163, 74, 0.4)',
+                      '0 0 15px rgba(34, 197, 94, 0.3)'
+                    ] : [
+                      '0 0 5px rgba(34, 197, 94, 0.2)',
+                      '0 0 15px rgba(22, 163, 74, 0.3)',
+                      '0 0 5px rgba(34, 197, 94, 0.2)'
+                    ]
+                  }}
+                  transition={{ duration: textHover ? 2 : 3, repeat: Infinity }}
+                >
+                  {slides[currentSlide].title}
+                </motion.h1>
                 
                 <motion.p 
-                  className="text-lg text-gray-600 leading-relaxed mb-8 relative max-w-xl"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.8 }}
+                  className="text-lg text-gray-600 leading-relaxed mb-8 max-w-xl transition-all duration-300"
                   style={{ 
-                    fontFamily: "'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-                    letterSpacing: '0.01em',
-                    fontWeight: 400
+                    filter: textHover ? 'url(#textGooey)' : 'none',
+                    transform: textHover ? 'scale(1.01)' : 'scale(1)'
                   }}
+                  initial={{ opacity: 0.8 }}
+                  animate={{ opacity: textHover ? [0.9, 1, 0.9] : [0.8, 1, 0.8] }}
+                  transition={{ duration: 2.5, repeat: Infinity }}
                 >
                   {slides[currentSlide].subtitle}
                 </motion.p>
                 
-                <motion.div 
-                  className="flex flex-col sm:flex-row gap-4"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 1.2 }}
-                >
+                <div className="flex flex-col sm:flex-row gap-4">
                   <motion.button 
                     className="group bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl cursor-pointer"
-                    whileHover={{ 
-                      scale: 1.05,
-                      boxShadow: "0 20px 40px rgba(34, 197, 94, 0.3)"
-                    }}
+                    whileHover={{ scale: 1.05, boxShadow: '0 0 25px rgba(34, 197, 94, 0.4)' }}
                     whileTap={{ scale: 0.95 }}
-                    onHoverStart={(e) => {
+                    onMouseEnter={(e) => {
                       const rect = e.target.getBoundingClientRect();
-                      generateBubble(rect.left + rect.width/2, rect.top + rect.height/2);
+                      createBlob(rect.left + rect.width/2 - containerRef.current.getBoundingClientRect().left, 
+                                rect.top + rect.height/2 - containerRef.current.getBoundingClientRect().top);
                     }}
                   >
                     <span>See the details here</span>
@@ -534,38 +338,33 @@ const Hero = () => {
                   
                   <motion.button 
                     className="group backdrop-blur-md bg-white/80 hover:bg-white text-gray-800 px-8 py-4 rounded-full font-medium transition-all duration-300 flex items-center justify-center space-x-2 border border-green-100 hover:border-green-200 shadow-sm cursor-pointer"
-                    whileHover={{ 
-                      scale: 1.05,
-                      backgroundColor: "rgba(255, 255, 255, 0.95)"
-                    }}
+                    whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(16, 185, 129, 0.3)' }}
                     whileTap={{ scale: 0.95 }}
-                    onHoverStart={(e) => {
+                    onMouseEnter={(e) => {
                       const rect = e.target.getBoundingClientRect();
-                      generateBubble(rect.left + rect.width/2, rect.top + rect.height/2);
+                      createBlob(rect.left + rect.width/2 - containerRef.current.getBoundingClientRect().left, 
+                                rect.top + rect.height/2 - containerRef.current.getBoundingClientRect().top);
                     }}
                   >
                     <Play size={20} className="text-green-600" />
                     <span>Watch Demo</span>
                   </motion.button>
-                </motion.div>
+                </div>
               </motion.div>
             </div>
             
             {/* Right Content - Hero Image */}
             <motion.div 
               className="flex items-center justify-center lg:ml-8"
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
               <div className="relative w-full max-w-lg">
                 <motion.div 
                   className="relative backdrop-blur-lg bg-white/80 border border-green-100 rounded-3xl p-8 shadow-lg"
-                  whileHover={{ 
-                    scale: 1.02,
-                    boxShadow: "0 30px 60px rgba(34, 197, 94, 0.2)"
-                  }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  whileHover={{ scale: 1.02, boxShadow: '0 0 30px rgba(34, 197, 94, 0.2)' }}
+                  transition={{ duration: 0.3 }}
                 >
                   <div className="aspect-square w-full bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl flex items-center justify-center overflow-hidden">
                     <AnimatePresence mode="wait">
@@ -577,33 +376,25 @@ const Hero = () => {
                         initial={{ opacity: 0, scale: 1.1 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.9 }}
-                        transition={{ duration: 0.7 }}
+                        transition={{ duration: 0.6 }}
                       />
                     </AnimatePresence>
-                    <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent rounded-2xl"></div>
                   </div>
                   
                   <motion.div 
                     className="absolute -top-4 -right-4 backdrop-blur-lg bg-green-500/90 text-white px-4 py-2 rounded-full text-sm font-medium shadow-md border border-green-100"
-                    animate={{ rotate: [0, 5, -5, 0] }}
+                    animate={{ 
+                      boxShadow: [
+                        '0 0 10px rgba(34, 197, 94, 0.3)',
+                        '0 0 20px rgba(22, 163, 74, 0.5)',
+                        '0 0 10px rgba(34, 197, 94, 0.3)'
+                      ]
+                    }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
                     {slides[currentSlide].number}
                   </motion.div>
-                  
-                  <motion.div 
-                    className="absolute -bottom-4 -left-4 w-8 h-8 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full shadow-md"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-                  />
-                  <motion.div 
-                    className="absolute -top-2 left-1/4 w-4 h-4 bg-green-100 rounded-full"
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
-                  />
                 </motion.div>
-                
-                <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-3xl blur-2xl -z-10 scale-110"></div>
               </div>
             </motion.div>
           </div>

@@ -112,7 +112,7 @@ const About = () => {
                 {/* Image placeholder - replace with your actual image */}
                 <div className="aspect-[4/5] w-full bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl flex items-center justify-center overflow-hidden relative">
                   {/* Placeholder for actual image */}
-                 <img src={hero} alt="hero section" className='h-full' />
+                 <img src={hero} alt="hero section" className='h-full w-full' />
                   
                   {/* Overlay gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent rounded-2xl"></div>
