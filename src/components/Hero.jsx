@@ -94,6 +94,17 @@ const Hero = () => {
     }
   }, [isHovering, createSplash])
 
+  // Function to scroll to customers section
+  const scrollToCustomers = () => {
+    const customersSection = document.getElementById('customers')
+    if (customersSection) {
+      customersSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }
+
   return (
     <div
       ref={containerRef}
@@ -181,6 +192,7 @@ const Hero = () => {
                 style={{ pointerEvents: 'auto' }}
               >
                 <motion.button
+                  onClick={scrollToCustomers}
                   className="group bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-12 py-5 rounded-full font-bold transition-all duration-500 flex items-center justify-center space-x-3 shadow-lg hover:shadow-xl cursor-pointer relative overflow-hidden text-lg"
                   whileHover={{
                     scale: 1.02,
@@ -198,19 +210,7 @@ const Hero = () => {
                   />
                 </motion.button>
 
-                <motion.button
-                  className="group bg-gray-100 hover:bg-gray-200 text-gray-700 px-12 py-5 rounded-full font-bold transition-all duration-500 flex items-center justify-center space-x-3 border border-gray-200 hover:border-gray-300 shadow-sm cursor-pointer relative overflow-hidden text-lg"
-                  whileHover={{
-                    scale: 1.02,
-                    boxShadow: "0 8px 30px rgba(0, 0, 0, 0.1)",
-                    y: -1,
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-gray-200/50 to-gray-100/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg"></div>
-                  <Play size={20} className="relative z-10 text-blue-500" />
-                  <span className="relative z-10">Watch Demo</span>
-                </motion.button>
+              
               </motion.div>
             </motion.div>
           </div>

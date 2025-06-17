@@ -77,8 +77,8 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200' 
-          : 'bg-white/90 backdrop-blur-sm'
+          ? 'bg-gradient-to-r from-blue-100/95 via-indigo-100/95 to-blue-100/95 backdrop-blur-md shadow-xl border-b border-blue-300/50' 
+          : 'bg-gradient-to-r from-blue-100/90 via-indigo-100/90 to-blue-100/90 backdrop-blur-sm'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
@@ -91,7 +91,7 @@ const Navbar = () => {
             className="flex items-center space-x-3"
           >
             <Link to="/" className="flex items-center space-x-3">
-              <img src={nexuslogo} alt="Nexus Energy" className="w-10 h-10 rounded-sm" />
+              <img src={nexuslogo} alt="Nexus Energy" className="w-20 h-16 rounded-sm" />
               <div>
                 <h1 className="text-xl font-bold text-gray-800">Nexus Energy</h1>
                 <p className="text-xs text-blue-600">Solutions</p>
@@ -185,7 +185,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden bg-white border-t border-gray-200 shadow-lg"
+            className="lg:hidden bg-gradient-to-b from-blue-100/95 to-indigo-100/95 backdrop-blur-md border-t border-blue-300/50 shadow-lg"
           >
             <div className="px-6 py-4 space-y-4">
               {navItems.map((item, index) => (

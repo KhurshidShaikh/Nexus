@@ -120,48 +120,48 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative min-h-screen overflow-hidden bg-white py-20">
+    <footer className="relative min-h-screen overflow-hidden bg-gradient-to-br from-blue-100/80 via-indigo-100/60 to-blue-100/80 py-20">
       {/* Enhanced Modern Background Elements - Light Theme */}
       <div className="absolute inset-0">
-        {/* Modern gradient overlays - Light */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-indigo-50/30 to-blue-50/50"></div>
-        <div className="absolute inset-0 bg-gradient-to-tr from-indigo-50/20 via-transparent to-blue-50/30"></div>
+        {/* Modern gradient overlays - Enhanced for blue background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-200/40 via-indigo-200/20 to-blue-200/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-indigo-200/30 via-transparent to-blue-200/20"></div>
         
-        {/* Larger, more vibrant geometric shapes - Light */}
-        <div className="absolute top-16 right-8 w-96 h-96 bg-gradient-to-br from-blue-200/15 to-indigo-300/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-24 left-6 w-80 h-80 bg-gradient-to-tr from-indigo-200/20 to-blue-300/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-r from-blue-100/25 to-indigo-200/20 rounded-full blur-2xl animate-pulse delay-500"></div>
+        {/* Larger, more vibrant geometric shapes - Enhanced */}
+        <div className="absolute top-16 right-8 w-96 h-96 bg-gradient-to-br from-blue-300/30 to-indigo-400/25 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-24 left-6 w-80 h-80 bg-gradient-to-tr from-indigo-300/35 to-blue-400/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-r from-blue-200/40 to-indigo-300/35 rounded-full blur-2xl animate-pulse delay-500"></div>
         
-        {/* Additional floating elements - Light */}
-        <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-gradient-to-br from-blue-200/10 to-indigo-300/8 rounded-full blur-xl animate-pulse delay-1500"></div>
-        <div className="absolute bottom-1/3 left-1/5 w-40 h-40 bg-gradient-to-tl from-indigo-200/15 to-blue-300/10 rounded-full blur-2xl animate-pulse delay-2000"></div>
+        {/* Additional floating elements - Enhanced */}
+        <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-gradient-to-br from-blue-300/25 to-indigo-400/20 rounded-full blur-xl animate-pulse delay-1500"></div>
+        <div className="absolute bottom-1/3 left-1/5 w-40 h-40 bg-gradient-to-tl from-indigo-300/30 to-blue-400/25 rounded-full blur-2xl animate-pulse delay-2000"></div>
         
-        {/* Modern grid pattern with enhanced opacity - Light */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
+        {/* Modern grid pattern with enhanced opacity */}
+        <div className="absolute inset-0 opacity-[0.05]" style={{
           backgroundImage: `radial-gradient(circle at 1px 1px, #3b82f6 1px, transparent 0)`,
           backgroundSize: '50px 50px'
         }}></div>
         
-        {/* More floating orbs with varied sizes and colors - Light */}
-        <div className="absolute top-32 left-1/4 w-8 h-8 bg-blue-300/30 rounded-full animate-bounce delay-300"></div>
-        <div className="absolute bottom-48 right-1/3 w-5 h-5 bg-indigo-300/40 rounded-full animate-bounce delay-700"></div>
-        <div className="absolute top-2/3 left-1/8 w-4 h-4 bg-blue-200/50 rounded-full animate-bounce delay-1000"></div>
-        <div className="absolute top-1/3 right-1/6 w-6 h-6 bg-indigo-200/35 rounded-full animate-bounce delay-500"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-blue-300/45 rounded-full animate-bounce delay-1200"></div>
+        {/* More floating orbs with varied sizes and colors - Enhanced */}
+        <div className="absolute top-32 left-1/4 w-8 h-8 bg-blue-400/60 rounded-full animate-bounce delay-300"></div>
+        <div className="absolute bottom-48 right-1/3 w-5 h-5 bg-indigo-400/70 rounded-full animate-bounce delay-700"></div>
+        <div className="absolute top-2/3 left-1/8 w-4 h-4 bg-blue-300/80 rounded-full animate-bounce delay-1000"></div>
+        <div className="absolute top-1/3 right-1/6 w-6 h-6 bg-indigo-300/65 rounded-full animate-bounce delay-500"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-blue-400/75 rounded-full animate-bounce delay-1200"></div>
         
-        {/* Enhanced gradient overlays - Light */}
-        <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-white/90 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-white/70 to-transparent"></div>
+        {/* Enhanced gradient overlays */}
+        <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-blue-100/90 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-blue-100/80 to-transparent"></div>
         
-        {/* Subtle animated lines - Light */}
-        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-300/20 to-transparent animate-pulse"></div>
-        <div className="absolute bottom-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-300/20 to-transparent animate-pulse delay-1000"></div>
+        {/* Subtle animated lines - Enhanced */}
+        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/40 to-transparent animate-pulse"></div>
+        <div className="absolute bottom-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-400/40 to-transparent animate-pulse delay-1000"></div>
         
-        {/* Modern mesh gradient effect - Light */}
-        <div className="absolute inset-0 opacity-15" style={{
-          background: `radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-                      radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
-                      radial-gradient(circle at 40% 40%, rgba(147, 197, 253, 0.03) 0%, transparent 50%)`
+        {/* Modern mesh gradient effect - Enhanced */}
+        <div className="absolute inset-0 opacity-25" style={{
+          background: `radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                      radial-gradient(circle at 40% 40%, rgba(147, 197, 253, 0.1) 0%, transparent 50%)`
         }}></div>
       </div>
 
@@ -226,14 +226,14 @@ const Footer = () => {
               Get In Touch
             </h4>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
                 return (
                   <div key={index} className="group">
                     <a
                       href={info.action}
-                      className="flex items-center space-x-3 p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-all duration-300 hover:scale-105"
+                      className="flex items-center space-x-3 p-3 rounded-xl bg-white/90 hover:bg-white transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
                     >
                       <Icon className="w-5 h-5 text-blue-500 group-hover:text-blue-600 transition-colors duration-300" />
                       <div>
@@ -253,7 +253,7 @@ const Footer = () => {
                   href="https://maps.google.com/?q=508+Rosa+Bella+Towers+Waghbil+Ghodbunder+Road+Thane+West+Mumbai+400815"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start space-x-3 p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-all duration-300 hover:scale-105"
+                  className="flex items-start space-x-3 p-3 rounded-xl bg-white/90 hover:bg-white transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
                 >
                   <MapPin className="w-5 h-5 text-blue-500 group-hover:text-blue-600 transition-colors duration-300 flex-shrink-0 mt-1" />
                   <div>
@@ -289,10 +289,10 @@ const Footer = () => {
               {services.map((service, index) => (
                 <div
                   key={index}
-                  className="group flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition-all duration-300 cursor-pointer"
+                  className="group flex items-center space-x-3 p-2 rounded-lg hover:bg-white/80 transition-all duration-300 cursor-pointer"
                 >
                   <div className="w-2 h-2 bg-blue-500 rounded-full group-hover:bg-blue-600 transition-colors duration-300"></div>
-                  <span className="text-gray-600 text-sm group-hover:text-gray-800 group-hover:translate-x-1 transition-all duration-300">
+                  <span className="text-gray-700 text-sm group-hover:text-gray-800 group-hover:translate-x-1 transition-all duration-300">
                     {service}
                   </span>
                 </div>
@@ -325,14 +325,14 @@ const Footer = () => {
                 >
                   <button
                     onClick={() => handleLinkClick(link.path)}
-                    className="w-full flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition-all duration-300"
+                    className="w-full flex items-center space-x-3 p-2 rounded-lg hover:bg-white/80 transition-all duration-300"
                   >
                     <motion.div 
                       className="w-2 h-2 bg-blue-500 rounded-full"
                       whileHover={{ scale: 1.5 }}
                       transition={{ duration: 0.2 }}
                     />
-                    <span className="text-gray-600 text-sm group-hover:text-gray-800 transition-all duration-300">
+                    <span className="text-gray-700 text-sm group-hover:text-gray-800 transition-all duration-300">
                       {link.label}
                     </span>
                   </button>

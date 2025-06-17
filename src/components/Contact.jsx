@@ -48,9 +48,37 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
+    // Create email content
+    const subject = encodeURIComponent("New Contact Form Submission - Nexus Energy Solutions");
+    const body = encodeURIComponent(`
+Dear Nexus Energy Solutions Team,
+
+I would like to get in touch regarding your energy solutions.
+
+Contact Details:
+- Name: ${formData.name}
+- Email: ${formData.email}
+- Phone: ${formData.phone || 'Not provided'}
+- Company: ${formData.company || 'Not provided'}
+
+Message:
+${formData.message}
+
+Best regards,
+${formData.name}
+    `);
+    
+    // Create mailto link
+    const mailtoLink = `mailto:sales@nexusenergy.in?subject=${subject}&body=${body}`;
+    
+    // Simulate form submission delay
     setTimeout(() => {
       setIsSubmitting(false);
+      
+      // Open email client
+      window.location.href = mailtoLink;
+      
+      // Reset form
       setFormData({
         name: '',
         email: '',
@@ -58,8 +86,10 @@ const Contact = () => {
         company: '',
         message: ''
       });
-      alert('Thank you for your message! We will get back to you soon.');
-    }, 2000);
+      
+      // Show success message
+      alert('Thank you for your message! Your email client will open with a pre-filled message to our team.');
+    }, 1500);
   };
 
   const contactInfo = [

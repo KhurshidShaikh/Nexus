@@ -112,22 +112,24 @@ const Services = () => {
           slidesToShow: 2,
           centerMode: false,
           centerPadding: '0px',
+          arrows: true,
         }
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          centerMode: false,
-          centerPadding: '0px',
-          arrows: false,
+          centerMode: true,
+          centerPadding: '60px',
+          arrows: true,
+          dots: true,
         }
       }
     ],
   };
 
   return (
-    <div id="services" ref={sectionRef} className="relative min-h-screen overflow-hidden bg-white py-20">
+    <div id="services" ref={sectionRef} className="relative min-h-screen overflow-hidden bg-white py-12 md:py-20">
       {/* Enhanced Modern Background Elements */}
       <div className="absolute inset-0">
         {/* Modern gradient overlays */}
@@ -172,23 +174,23 @@ const Services = () => {
         }}></div>
       </div>
 
-      <div className="max-w-7xl mx-auto relative">
+      <div className="max-w-7xl mx-auto relative px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 bg-clip-text text-transparent mb-4">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 bg-clip-text text-transparent mb-4">
             Precision-Engineered Solutions
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Where Innovation Converges with Operational Excellence -
             Transforming Industries Through Advanced Energy Solutions
           </p>
         </div>
 
         {/* Services Slider */}
-        <div className="services-slider max-w-6xl mx-auto px-4">
+        <div className="services-slider max-w-6xl mx-auto">
           <Slider {...sliderSettings}>
             {services.map((service, index) => (
-              <div key={index} className="h-full px-3">
+              <div key={index} className="h-full px-2 md:px-3">
                 <div
                   className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 h-full flex flex-col"
                   onMouseEnter={() => setHoveredCard(index)}
@@ -197,7 +199,7 @@ const Services = () => {
                   {/* Card Content */}
                   <div className="flex flex-col h-full">
                     {/* Image Section */}
-                    <div className="relative h-48 overflow-hidden">
+                    <div className="relative h-40 md:h-48 overflow-hidden">
                       <img
                         src={service.image}
                         alt={service.title}
@@ -206,28 +208,28 @@ const Services = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                       
                       {/* Floating Icon */}
-                      <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center text-xl shadow-lg">
+                      <div className="absolute top-3 md:top-4 right-3 md:right-4 w-8 h-8 md:w-10 md:h-10 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center text-lg md:text-xl shadow-lg">
                         {service.icon}
                       </div>
                       
                       {/* Stats Badge */}
-                      <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold text-gray-800 shadow-lg">
+                      <div className="absolute bottom-3 md:bottom-4 left-3 md:left-4 bg-white/95 backdrop-blur-sm px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-semibold text-gray-800 shadow-lg">
                         {service.stats}
                       </div>
                     </div>
 
                     {/* Content Section */}
-                    <div className="p-6 flex flex-col flex-grow">
-                      <h3 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-blue-700 transition-colors duration-300">
+                    <div className="p-4 md:p-6 flex flex-col flex-grow">
+                      <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4 group-hover:text-blue-700 transition-colors duration-300">
                         {service.title}
                       </h3>
 
                       {/* Offerings */}
-                      <div className="space-y-2 mb-4 flex-grow">
+                      <div className="space-y-1.5 md:space-y-2 mb-3 md:mb-4 flex-grow">
                         {service.offerings.map((offering, idx) => (
                           <div key={idx} className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></div>
-                            <p className="text-gray-600 text-sm leading-relaxed">
+                            <div className="w-1 h-1 md:w-1.5 md:h-1.5 bg-blue-500 rounded-full mt-1.5 md:mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></div>
+                            <p className="text-gray-600 text-xs md:text-sm leading-relaxed">
                               {offering}
                             </p>
                           </div>
@@ -235,22 +237,22 @@ const Services = () => {
                       </div>
 
                       {/* Highlight Quote */}
-                      <div className="relative mb-4">
-                        <blockquote className="text-sm italic text-blue-800 bg-blue-50/50 p-3 rounded-xl border-l-2 border-blue-500">
+                      <div className="relative mb-3 md:mb-4">
+                        <blockquote className="text-xs md:text-sm italic text-blue-800 bg-blue-50/50 p-2 md:p-3 rounded-xl border-l-2 border-blue-500">
                           {service.highlight}
                         </blockquote>
                       </div>
 
                       {/* Applications */}
-                      <div className="mt-auto pt-4 border-t border-gray-100">
-                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                      <div className="mt-auto pt-3 md:pt-4 border-t border-gray-100">
+                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 md:mb-2">
                           Applications
                         </p>
-                        <div className="flex flex-wrap gap-1.5">
+                        <div className="flex flex-wrap gap-1 md:gap-1.5">
                           {service.applications.map((app, idx) => (
                             <span
                               key={idx}
-                              className="px-2 py-0.5 bg-gray-100 text-gray-700 text-xs rounded-full font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors duration-200"
+                              className="px-1.5 md:px-2 py-0.5 bg-gray-100 text-gray-700 text-xs rounded-full font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors duration-200"
                             >
                               {app}
                             </span>
@@ -261,14 +263,14 @@ const Services = () => {
 
                     {/* Hover Effect Arrow */}
                     <div
-                      className={`absolute bottom-4 right-4 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white transition-all duration-300 ${
+                      className={`absolute bottom-3 md:bottom-4 right-3 md:right-4 w-6 h-6 md:w-8 md:h-8 bg-blue-500 rounded-full flex items-center justify-center text-white transition-all duration-300 ${
                         hoveredCard === index
                           ? "opacity-100 translate-x-0"
                           : "opacity-0 translate-x-4"
                       }`}
                     >
                       <svg
-                        className="w-4 h-4"
+                        className="w-3 h-3 md:w-4 md:h-4"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -398,11 +400,28 @@ const Services = () => {
           }
           
           .services-slider .slick-prev {
-            left: -30px;
+            left: -20px;
+            width: 35px;
+            height: 35px;
           }
           
           .services-slider .slick-next {
-            right: -30px;
+            right: -20px;
+            width: 35px;
+            height: 35px;
+          }
+          
+          .services-slider .slick-prev:before,
+          .services-slider .slick-next:before {
+            font-size: 14px;
+          }
+          
+          .services-slider .slick-list {
+            padding: 10px 0;
+          }
+          
+          .services-slider .slick-track {
+            padding: 5px 0;
           }
         }
       `}</style>
