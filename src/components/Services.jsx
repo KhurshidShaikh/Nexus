@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Images } from "../constants";
 import Slider from "react-slick";
+
 
 const services = [
   {
@@ -90,6 +91,7 @@ const services = [
 
 const Services = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
+  const sectionRef = useRef(null);
 
   const sliderSettings = {
     dots: true,
@@ -101,23 +103,23 @@ const Services = () => {
     autoplaySpeed: 5000,
     pauseOnHover: true,
     arrows: true,
-    centerMode: true,
-    centerPadding: '60px',
+    centerMode: false,
+    centerPadding: '0px',
     responsive: [
       {
         breakpoint: 1280,
         settings: {
           slidesToShow: 2,
-          centerMode: true,
-          centerPadding: '40px',
+          centerMode: false,
+          centerPadding: '0px',
         }
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          centerMode: true,
-          centerPadding: '20px',
+          centerMode: false,
+          centerPadding: '0px',
           arrows: false,
         }
       }
@@ -125,130 +127,49 @@ const Services = () => {
   };
 
   return (
-    <section
-      className="relative bg-gradient-to-br from-gray-50 via-white to-green-50 py-20 px-4 md:px-8 lg:px-16 overflow-hidden"
-      id="services"
-    >
-      {/* Custom Slider Styles */}
-      <style>{`
-        .services-slider {
-          padding: 20px 0 80px;
-          margin: 0 -12px;
-          position: relative;
-        }
+    <div id="services" ref={sectionRef} className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-emerald-50/40 to-green-50/60 py-20">
+      {/* Enhanced Modern Background Elements */}
+      <div className="absolute inset-0">
+        {/* Modern gradient overlays */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50/80 via-emerald-50/30 to-green-50/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-blue-50/20 via-transparent to-emerald-50/30"></div>
         
-        .services-slider .slick-list {
-          margin: 0 -12px;
-          padding: 20px 12px;
-          overflow: visible;
-        }
+        {/* Larger, more vibrant geometric shapes */}
+        <div className="absolute top-16 right-8 w-96 h-96 bg-gradient-to-br from-green-400/25 to-emerald-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-24 left-6 w-80 h-80 bg-gradient-to-tr from-emerald-400/30 to-green-500/25 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-r from-green-300/35 to-emerald-400/30 rounded-full blur-2xl animate-pulse delay-500"></div>
         
-        .services-slider .slick-track {
-          display: flex;
-          gap: 24px;
-          padding: 10px 0;
-        }
+        {/* Additional floating elements */}
+        <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-gradient-to-br from-green-300/20 to-emerald-400/15 rounded-full blur-xl animate-pulse delay-1500"></div>
+        <div className="absolute bottom-1/3 left-1/5 w-40 h-40 bg-gradient-to-tl from-emerald-300/25 to-green-400/20 rounded-full blur-2xl animate-pulse delay-2000"></div>
         
-        .services-slider .slick-slide {
-          height: auto;
-          padding: 0 12px;
-          opacity: 0.5;
-          transform: scale(0.9);
-          transition: all 0.3s ease;
-        }
+        {/* Modern grid pattern with enhanced opacity */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, #10b981 1px, transparent 0)`,
+          backgroundSize: '50px 50px'
+        }}></div>
         
-        .services-slider .slick-slide.slick-active {
-          opacity: 1;
-          transform: scale(1);
-        }
+        {/* More floating orbs with varied sizes and colors */}
+        <div className="absolute top-32 left-1/4 w-8 h-8 bg-green-400/50 rounded-full animate-bounce delay-300"></div>
+        <div className="absolute bottom-48 right-1/3 w-5 h-5 bg-emerald-400/60 rounded-full animate-bounce delay-700"></div>
+        <div className="absolute top-2/3 left-1/8 w-4 h-4 bg-green-300/70 rounded-full animate-bounce delay-1000"></div>
+        <div className="absolute top-1/3 right-1/6 w-6 h-6 bg-emerald-300/55 rounded-full animate-bounce delay-500"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-green-400/65 rounded-full animate-bounce delay-1200"></div>
         
-        .services-slider .slick-slide > div {
-          height: 100%;
-        }
+        {/* Enhanced gradient overlays */}
+        <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-white/90 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-white/70 to-transparent"></div>
         
-        .services-slider .slick-dots {
-          bottom: 40px;
-        }
+        {/* Subtle animated lines */}
+        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-green-300/30 to-transparent animate-pulse"></div>
+        <div className="absolute bottom-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-emerald-300/30 to-transparent animate-pulse delay-1000"></div>
         
-        .services-slider .slick-dots li {
-          margin: 0 6px;
-        }
-        
-        .services-slider .slick-dots li button:before {
-          font-size: 10px;
-          color: #059669;
-          opacity: 0.3;
-          transition: all 0.3s ease;
-        }
-        
-        .services-slider .slick-dots li.slick-active button:before {
-          opacity: 1;
-          color: #059669;
-          transform: scale(1.2);
-        }
-        
-        .services-slider .slick-prev,
-        .services-slider .slick-next {
-          z-index: 10;
-          width: 40px;
-          height: 40px;
-          background: white;
-          border-radius: 50%;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-          border: 1px solid #e5e7eb;
-          transition: all 0.3s ease;
-        }
-        
-        .services-slider .slick-prev {
-          left: -20px;
-        }
-        
-        .services-slider .slick-next {
-          right: -20px;
-        }
-        
-        .services-slider .slick-prev:hover,
-        .services-slider .slick-next:hover {
-          background: #059669;
-          border-color: #059669;
-        }
-        
-        .services-slider .slick-prev:before,
-        .services-slider .slick-next:before {
-          font-size: 16px;
-          color: #059669;
-          opacity: 1;
-          transition: all 0.3s ease;
-        }
-        
-        .services-slider .slick-prev:hover:before,
-        .services-slider .slick-next:hover:before {
-          color: white;
-        }
-
-        @media (max-width: 768px) {
-          .services-slider {
-            padding: 10px 0 60px;
-          }
-          
-          .services-slider .slick-dots {
-            bottom: 30px;
-          }
-          
-          .services-slider .slick-slide {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-      `}</style>
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23059669' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        ></div>
+        {/* Modern mesh gradient effect */}
+        <div className="absolute inset-0 opacity-20" style={{
+          background: `radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 40% 40%, rgba(52, 211, 153, 0.05) 0%, transparent 50%)`
+        }}></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative">
@@ -264,10 +185,10 @@ const Services = () => {
         </div>
 
         {/* Services Slider */}
-        <div className="services-slider">
+        <div className="services-slider max-w-6xl mx-auto px-4">
           <Slider {...sliderSettings}>
             {services.map((service, index) => (
-              <div key={index} className="h-full">
+              <div key={index} className="h-full px-3">
                 <div
                   className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 h-full flex flex-col"
                   onMouseEnter={() => setHoveredCard(index)}
@@ -367,7 +288,125 @@ const Services = () => {
           </Slider>
         </div>
       </div>
-    </section>
+
+      {/* Custom Slider Styles */}
+      <style>{`
+        .services-slider {
+          padding: 20px 0 80px;
+          position: relative;
+        }
+        
+        .services-slider .slick-list {
+          padding: 20px 0;
+          overflow: hidden;
+        }
+        
+        .services-slider .slick-track {
+          display: flex;
+          gap: 0;
+          padding: 10px 0;
+        }
+        
+        .services-slider .slick-slide {
+          height: auto;
+          opacity: 1;
+          transform: scale(1);
+          transition: all 0.3s ease;
+        }
+        
+        .services-slider .slick-slide.slick-active {
+          opacity: 1;
+          transform: scale(1);
+        }
+        
+        .services-slider .slick-slide > div {
+          height: 100%;
+        }
+        
+        .services-slider .slick-dots {
+          bottom: 40px;
+        }
+        
+        .services-slider .slick-dots li {
+          margin: 0 6px;
+        }
+        
+        .services-slider .slick-dots li button:before {
+          font-size: 10px;
+          color: #059669;
+          opacity: 0.3;
+          transition: all 0.3s ease;
+        }
+        
+        .services-slider .slick-dots li.slick-active button:before {
+          opacity: 1;
+          color: #059669;
+          transform: scale(1.2);
+        }
+        
+        .services-slider .slick-prev,
+        .services-slider .slick-next {
+          z-index: 10;
+          width: 40px;
+          height: 40px;
+          background: white;
+          border-radius: 50%;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          border: 1px solid #e5e7eb;
+          transition: all 0.3s ease;
+        }
+        
+        .services-slider .slick-prev {
+          left: -50px;
+        }
+        
+        .services-slider .slick-next {
+          right: -50px;
+        }
+        
+        .services-slider .slick-prev:hover,
+        .services-slider .slick-next:hover {
+          background: #059669;
+          border-color: #059669;
+        }
+        
+        .services-slider .slick-prev:before,
+        .services-slider .slick-next:before {
+          font-size: 16px;
+          color: #059669;
+          opacity: 1;
+          transition: all 0.3s ease;
+        }
+        
+        .services-slider .slick-prev:hover:before,
+        .services-slider .slick-next:hover:before {
+          color: white;
+        }
+
+        @media (max-width: 768px) {
+          .services-slider {
+            padding: 10px 0 60px;
+          }
+          
+          .services-slider .slick-dots {
+            bottom: 30px;
+          }
+          
+          .services-slider .slick-slide {
+            opacity: 1;
+            transform: scale(1);
+          }
+          
+          .services-slider .slick-prev {
+            left: -30px;
+          }
+          
+          .services-slider .slick-next {
+            right: -30px;
+          }
+        }
+      `}</style>
+    </div>
   );
 };
 

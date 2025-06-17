@@ -84,12 +84,49 @@ const Customers = () => {
   ];
 
   return (
-    <div id="customers" ref={sectionRef} className="relative min-h-screen overflow-hidden bg-gradient-to-br from-green-50 via-white to-emerald-50 py-20">
-      {/* Background Elements */}
+    <div id="customers" ref={sectionRef} className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-emerald-50/40 to-green-50/60 py-20">
+      {/* Enhanced Modern Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-40 left-20 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-60 right-20 w-32 h-32 bg-green-500/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-emerald-400/10 rounded-full blur-xl animate-pulse delay-500"></div>
+        {/* Modern gradient overlays */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50/80 via-emerald-50/30 to-green-50/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-blue-50/20 via-transparent to-emerald-50/30"></div>
+        
+        {/* Larger, more vibrant geometric shapes */}
+        <div className="absolute top-16 right-8 w-96 h-96 bg-gradient-to-br from-green-400/25 to-emerald-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-24 left-6 w-80 h-80 bg-gradient-to-tr from-emerald-400/30 to-green-500/25 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-r from-green-300/35 to-emerald-400/30 rounded-full blur-2xl animate-pulse delay-500"></div>
+        
+        {/* Additional floating elements */}
+        <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-gradient-to-br from-green-300/20 to-emerald-400/15 rounded-full blur-xl animate-pulse delay-1500"></div>
+        <div className="absolute bottom-1/3 left-1/5 w-40 h-40 bg-gradient-to-tl from-emerald-300/25 to-green-400/20 rounded-full blur-2xl animate-pulse delay-2000"></div>
+        
+        {/* Modern grid pattern with enhanced opacity */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, #10b981 1px, transparent 0)`,
+          backgroundSize: '50px 50px'
+        }}></div>
+        
+        {/* More floating orbs with varied sizes and colors */}
+        <div className="absolute top-32 left-1/4 w-8 h-8 bg-green-400/50 rounded-full animate-bounce delay-300"></div>
+        <div className="absolute bottom-48 right-1/3 w-5 h-5 bg-emerald-400/60 rounded-full animate-bounce delay-700"></div>
+        <div className="absolute top-2/3 left-1/8 w-4 h-4 bg-green-300/70 rounded-full animate-bounce delay-1000"></div>
+        <div className="absolute top-1/3 right-1/6 w-6 h-6 bg-emerald-300/55 rounded-full animate-bounce delay-500"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-green-400/65 rounded-full animate-bounce delay-1200"></div>
+        
+        {/* Enhanced gradient overlays */}
+        <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-white/90 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-white/70 to-transparent"></div>
+        
+        {/* Subtle animated lines */}
+        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-green-300/30 to-transparent animate-pulse"></div>
+        <div className="absolute bottom-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-emerald-300/30 to-transparent animate-pulse delay-1000"></div>
+        
+        {/* Modern mesh gradient effect */}
+        <div className="absolute inset-0 opacity-20" style={{
+          background: `radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 40% 40%, rgba(52, 211, 153, 0.05) 0%, transparent 50%)`
+        }}></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-16">
@@ -135,9 +172,9 @@ const Customers = () => {
                 key={project.id}
                 className={`group transform transition-all duration-1000 ${
                   animatedItems[project.delay] ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-10 opacity-0 scale-95'
-                } hover:scale-105`}
+                } hover:scale-105 h-full`}
               >
-                <div className="backdrop-blur-lg bg-white/80 border border-green-100 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500">
+                <div className="backdrop-blur-lg bg-white/80 border border-green-100 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 h-full flex flex-col">
                   
                   {/* Project Header */}
                   <div className="flex items-start justify-between mb-6">
@@ -156,7 +193,7 @@ const Customers = () => {
                   </div>
 
                   {/* Project Image */}
-                  <div className="aspect-video w-full bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl mb-6 flex items-center justify-center overflow-hidden relative">
+                  <div className="aspect-video w-full bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl mb-6 flex items-center justify-center overflow-hidden relative flex-shrink-0">
                     <img 
                       src={project.image} 
                       alt={project.title}
@@ -166,7 +203,7 @@ const Customers = () => {
                   </div>
 
                   {/* Project Content */}
-                  <div className="space-y-4">
+                  <div className="space-y-4 flex-1">
                     <h4 className="text-2xl font-bold text-gray-800">{project.title}</h4>
                     <p className="text-gray-600 leading-relaxed">{project.description}</p>
                   </div>

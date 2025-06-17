@@ -64,7 +64,7 @@ const Features = () => {
   ];
 
   return (
-    <section className="bg-white py-20 px-6" id="features">
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-emerald-50/40 to-green-50/60 py-20">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -171,7 +171,7 @@ const Features = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
