@@ -21,7 +21,7 @@ const services = [
     image: Images.eMobility,
     icon: "⚡",
     stats: "99.8% Uptime",
-    gradient: "from-blue-500 to-cyan-500",
+    gradient: "from-blue-500 to-indigo-500",
   },
   {
     title: "Renewable Energy Integration",
@@ -36,7 +36,7 @@ const services = [
     image: Images.rEnergy,
     icon: "🌱",
     stats: "4,200 tons CO₂ saved",
-    gradient: "from-green-500 to-emerald-500",
+    gradient: "from-indigo-500 to-blue-600",
   },
   {
     title: "Defense & Aerospace Power Systems",
@@ -70,7 +70,7 @@ const services = [
     image: Images.forkLifts,
     icon: "🏭",
     stats: "40% Cost Reduction",
-    gradient: "from-orange-500 to-red-500",
+    gradient: "from-blue-600 to-indigo-700",
   },
   {
     title: "Agricultural Modernization",
@@ -85,7 +85,7 @@ const services = [
     image: Images.tempo,
     icon: "🌾",
     stats: "2x Crop Yields",
-    gradient: "from-amber-500 to-yellow-500",
+    gradient: "from-indigo-400 to-blue-500",
   },
 ];
 
@@ -127,55 +127,55 @@ const Services = () => {
   };
 
   return (
-    <div id="services" ref={sectionRef} className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-emerald-50/40 to-green-50/60 py-20">
+    <div id="services" ref={sectionRef} className="relative min-h-screen overflow-hidden bg-white py-20">
       {/* Enhanced Modern Background Elements */}
       <div className="absolute inset-0">
         {/* Modern gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50/80 via-emerald-50/30 to-green-50/50"></div>
-        <div className="absolute inset-0 bg-gradient-to-tr from-blue-50/20 via-transparent to-emerald-50/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-indigo-50/30 to-blue-50/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-indigo-50/20 via-transparent to-blue-50/30"></div>
         
         {/* Larger, more vibrant geometric shapes */}
-        <div className="absolute top-16 right-8 w-96 h-96 bg-gradient-to-br from-green-400/25 to-emerald-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-24 left-6 w-80 h-80 bg-gradient-to-tr from-emerald-400/30 to-green-500/25 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-r from-green-300/35 to-emerald-400/30 rounded-full blur-2xl animate-pulse delay-500"></div>
+        <div className="absolute top-16 right-8 w-96 h-96 bg-gradient-to-br from-blue-200/25 to-indigo-300/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-24 left-6 w-80 h-80 bg-gradient-to-tr from-indigo-200/30 to-blue-300/25 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-r from-blue-100/35 to-indigo-200/30 rounded-full blur-2xl animate-pulse delay-500"></div>
         
         {/* Additional floating elements */}
-        <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-gradient-to-br from-green-300/20 to-emerald-400/15 rounded-full blur-xl animate-pulse delay-1500"></div>
-        <div className="absolute bottom-1/3 left-1/5 w-40 h-40 bg-gradient-to-tl from-emerald-300/25 to-green-400/20 rounded-full blur-2xl animate-pulse delay-2000"></div>
+        <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-gradient-to-br from-blue-200/20 to-indigo-300/15 rounded-full blur-xl animate-pulse delay-1500"></div>
+        <div className="absolute bottom-1/3 left-1/5 w-40 h-40 bg-gradient-to-tl from-indigo-200/25 to-blue-300/20 rounded-full blur-2xl animate-pulse delay-2000"></div>
         
         {/* Modern grid pattern with enhanced opacity */}
         <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #10b981 1px, transparent 0)`,
+          backgroundImage: `radial-gradient(circle at 1px 1px, #3b82f6 1px, transparent 0)`,
           backgroundSize: '50px 50px'
         }}></div>
         
         {/* More floating orbs with varied sizes and colors */}
-        <div className="absolute top-32 left-1/4 w-8 h-8 bg-green-400/50 rounded-full animate-bounce delay-300"></div>
-        <div className="absolute bottom-48 right-1/3 w-5 h-5 bg-emerald-400/60 rounded-full animate-bounce delay-700"></div>
-        <div className="absolute top-2/3 left-1/8 w-4 h-4 bg-green-300/70 rounded-full animate-bounce delay-1000"></div>
-        <div className="absolute top-1/3 right-1/6 w-6 h-6 bg-emerald-300/55 rounded-full animate-bounce delay-500"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-green-400/65 rounded-full animate-bounce delay-1200"></div>
+        <div className="absolute top-32 left-1/4 w-8 h-8 bg-blue-300/50 rounded-full animate-bounce delay-300"></div>
+        <div className="absolute bottom-48 right-1/3 w-5 h-5 bg-indigo-300/60 rounded-full animate-bounce delay-700"></div>
+        <div className="absolute top-2/3 left-1/8 w-4 h-4 bg-blue-200/70 rounded-full animate-bounce delay-1000"></div>
+        <div className="absolute top-1/3 right-1/6 w-6 h-6 bg-indigo-200/55 rounded-full animate-bounce delay-500"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-blue-300/65 rounded-full animate-bounce delay-1200"></div>
         
         {/* Enhanced gradient overlays */}
         <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-white/90 to-transparent"></div>
         <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-white/70 to-transparent"></div>
         
         {/* Subtle animated lines */}
-        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-green-300/30 to-transparent animate-pulse"></div>
-        <div className="absolute bottom-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-emerald-300/30 to-transparent animate-pulse delay-1000"></div>
+        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-300/30 to-transparent animate-pulse"></div>
+        <div className="absolute bottom-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-300/30 to-transparent animate-pulse delay-1000"></div>
         
         {/* Modern mesh gradient effect */}
         <div className="absolute inset-0 opacity-20" style={{
-          background: `radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
-                      radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
-                      radial-gradient(circle at 40% 40%, rgba(52, 211, 153, 0.05) 0%, transparent 50%)`
+          background: `radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 40% 40%, rgba(147, 197, 253, 0.05) 0%, transparent 50%)`
         }}></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative">
         {/* Header Section */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-green-700 via-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 bg-clip-text text-transparent mb-4">
             Precision-Engineered Solutions
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -218,7 +218,7 @@ const Services = () => {
 
                     {/* Content Section */}
                     <div className="p-6 flex flex-col flex-grow">
-                      <h3 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-green-700 transition-colors duration-300">
+                      <h3 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-blue-700 transition-colors duration-300">
                         {service.title}
                       </h3>
 
@@ -226,7 +226,7 @@ const Services = () => {
                       <div className="space-y-2 mb-4 flex-grow">
                         {service.offerings.map((offering, idx) => (
                           <div key={idx} className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></div>
+                            <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></div>
                             <p className="text-gray-600 text-sm leading-relaxed">
                               {offering}
                             </p>
@@ -236,7 +236,7 @@ const Services = () => {
 
                       {/* Highlight Quote */}
                       <div className="relative mb-4">
-                        <blockquote className="text-sm italic text-green-800 bg-green-50/50 p-3 rounded-xl border-l-2 border-green-500">
+                        <blockquote className="text-sm italic text-blue-800 bg-blue-50/50 p-3 rounded-xl border-l-2 border-blue-500">
                           {service.highlight}
                         </blockquote>
                       </div>
@@ -250,7 +250,7 @@ const Services = () => {
                           {service.applications.map((app, idx) => (
                             <span
                               key={idx}
-                              className="px-2 py-0.5 bg-gray-100 text-gray-700 text-xs rounded-full font-medium hover:bg-green-100 hover:text-green-700 transition-colors duration-200"
+                              className="px-2 py-0.5 bg-gray-100 text-gray-700 text-xs rounded-full font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors duration-200"
                             >
                               {app}
                             </span>
@@ -261,7 +261,7 @@ const Services = () => {
 
                     {/* Hover Effect Arrow */}
                     <div
-                      className={`absolute bottom-4 right-4 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white transition-all duration-300 ${
+                      className={`absolute bottom-4 right-4 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white transition-all duration-300 ${
                         hoveredCard === index
                           ? "opacity-100 translate-x-0"
                           : "opacity-0 translate-x-4"
@@ -333,14 +333,14 @@ const Services = () => {
         
         .services-slider .slick-dots li button:before {
           font-size: 10px;
-          color: #059669;
+          color: #3b82f6;
           opacity: 0.3;
           transition: all 0.3s ease;
         }
         
         .services-slider .slick-dots li.slick-active button:before {
           opacity: 1;
-          color: #059669;
+          color: #3b82f6;
           transform: scale(1.2);
         }
         
@@ -366,14 +366,14 @@ const Services = () => {
         
         .services-slider .slick-prev:hover,
         .services-slider .slick-next:hover {
-          background: #059669;
-          border-color: #059669;
+          background: #3b82f6;
+          border-color: #3b82f6;
         }
         
         .services-slider .slick-prev:before,
         .services-slider .slick-next:before {
           font-size: 16px;
-          color: #059669;
+          color: #3b82f6;
           opacity: 1;
           transition: all 0.3s ease;
         }

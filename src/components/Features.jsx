@@ -64,13 +64,13 @@ const Features = () => {
   ];
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-emerald-50/40 to-green-50/60 py-20">
+    <div className="relative min-h-screen overflow-hidden bg-white py-20">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold text-gray-900 mb-6 leading-tight">
             The Nexus Technological
-            <span className="text-green-500"> Vanguard</span>
+            <span className="text-blue-600"> Vanguard</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Our proprietary energy architectures embody quantum leaps in
@@ -84,21 +84,21 @@ const Features = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group relative bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-2xl hover:shadow-green-500/10 transition-all duration-500 hover:-translate-y-2"
+              className="group relative bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-2"
             >
               {/* Icon Container */}
               <div className="relative mb-6">
-                <div className="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center text-green-600 group-hover:bg-green-500 group-hover:text-white transition-all duration-300">
+                <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">
                   {feature.icon}
                 </div>
                 {/* Highlight Badge */}
-                <div className="absolute -top-2 -right-2 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">
+                <div className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">
                   {feature.highlight}
                 </div>
               </div>
 
               {/* Content */}
-              <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors duration-300">
+              <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
                 {feature.title}
               </h3>
               <p className="text-gray-600 leading-relaxed">
@@ -106,7 +106,7 @@ const Features = () => {
               </p>
 
               {/* Hover Effect Border */}
-              <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-green-200 transition-all duration-300"></div>
+              <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-blue-200 transition-all duration-300"></div>
             </div>
           ))}
         </div>
@@ -126,7 +126,7 @@ const Features = () => {
             <div className="min-w-full">
               <table className="w-full bg-white rounded-2xl shadow-lg overflow-hidden">
                 <thead>
-                  <tr className="bg-gradient-to-r from-green-500 to-green-600 text-gray-300">
+                  <tr className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
                     <th className="p-6 text-left font-bold">Parameter</th>
                     {headers.map((title, idx) => (
                       <th
@@ -134,7 +134,7 @@ const Features = () => {
                         onClick={() => setSelectedIdx(idx + 1)}
                         className={`p-6 text-left font-bold cursor-pointer transition-all duration-200 ${
                           selectedIdx === idx + 1
-                            ? "bg-gray text-white shadow text-lg"
+                            ? "bg-gray-800 text-white shadow text-lg"
                             : "opacity-75"
                         }`}
                       >
@@ -147,7 +147,7 @@ const Features = () => {
                   {rows.map((row, rowIndex) => (
                     <tr
                       key={rowIndex}
-                      className="border-b border-gray-100 hover:bg-green-50/50 transition-colors duration-200"
+                      className="border-b border-gray-100 hover:bg-blue-50/50 transition-colors duration-200"
                     >
                       {row.map((cell, colIndex) => (
                         <td
@@ -156,7 +156,7 @@ const Features = () => {
                             colIndex === 0
                               ? "font-semibold text-gray-900"
                               : colIndex === selectedIdx
-                              ? "font-bold text-green-600 bg-green-50/50"
+                              ? "font-bold text-blue-600 bg-blue-50/50"
                               : "text-gray-600"
                           }`}
                         >

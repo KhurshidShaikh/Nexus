@@ -14,7 +14,7 @@ const App = () => {
   return (
     <>
       <ScrollToTop />
-      <div className="overflow-x-hidden min-h-screen w-full bg-gradient-to-br from-blue-50 via-white to-blue-100 text-gray-800">
+      <div className="overflow-x-hidden min-h-screen w-full text-gray-800 bg-white">
         <Navbar />
         <div className="pt-20">
           <Routes>

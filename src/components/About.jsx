@@ -58,7 +58,7 @@ const About = () => {
   ];
 
   return (
-    <div id="about" ref={sectionRef} className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-emerald-50/40 to-green-50/60 py-20">
+    <div id="about" ref={sectionRef} className="relative min-h-screen overflow-hidden bg-white py-20">
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-16">
         {/* Centered Header Section */}
         <div className={`transform transition-all duration-1000 delay-200 text-center max-w-4xl mx-auto mb-20 ${
@@ -66,14 +66,14 @@ const About = () => {
         }`}>
           <div className="flex flex-col items-center mb-6">
             <div className="relative mb-4">
-              <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-2xl transform hover:scale-110 transition-all duration-300">
+              <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center shadow-2xl transform hover:scale-110 transition-all duration-300">
                 <Zap className="w-10 h-10 text-white" />
               </div>
             </div>
-            <span className="text-xl text-green-600 uppercase tracking-widest font-semibold mb-3 bg-gradient-to-r from-green-500/10 to-emerald-500/10 px-6 py-2 rounded-full border border-green-200/50">
+            <span className="text-xl text-blue-600 uppercase tracking-widest font-semibold mb-3 bg-blue-50 px-6 py-2 rounded-full border border-blue-200">
               About Us
             </span>
-            <div className="w-32 h-1 bg-gradient-to-r from-green-500 via-emerald-500 to-green-500 rounded-full shadow-lg"></div>
+            <div className="w-32 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 rounded-full shadow-lg"></div>
           </div>
           
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-gray-800 leading-tight mb-8">
@@ -89,7 +89,7 @@ const About = () => {
           </h2>
           
           <div className="relative">
-            <p className="text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed mb-8 max-w-4xl mx-auto font-medium">
+            <p className="text-lg md:text-xl lg:text-2xl text-gray-600 leading-relaxed mb-8 max-w-4xl mx-auto font-medium">
               Nexus Energy Solutions stands at the convergence of electrochemical innovation and sustainable transformation, 
               redefining energy storage paradigms since its inception. Born from a collective passion to decarbonize industrial 
               ecosystems, we engineer power solutions that transcend conventional limitations—propelling humanity toward an 
@@ -104,27 +104,27 @@ const About = () => {
           <div className="flex items-center justify-center">
             <div className="relative w-full max-w-lg">
               {/* Main image container */}
-              <div className={`relative bg-white/90 border border-white/20 rounded-3xl p-8 shadow-2xl transform transition-all duration-1000 ${
+              <div className={`relative bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-2xl transform transition-all duration-1000 ${
                 isVisible ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-10 opacity-0 scale-95'
               }`}>
                 
                 {/* Image */}
-                <div className="aspect-[4/5] w-full bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-2xl flex items-center justify-center overflow-hidden relative">
+                <div className="aspect-[4/5] w-full bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl flex items-center justify-center overflow-hidden relative">
                   <img src={hero} alt="hero section" className='h-full w-full object-cover' />
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent rounded-2xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-100/20 to-transparent rounded-2xl"></div>
                 </div>
                 
-                <div className="absolute -bottom-4 -left-4 w-8 h-8 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full shadow-lg"></div>
-                <div className="absolute -top-2 left-1/4 w-4 h-4 bg-green-100 rounded-full shadow-sm"></div>
+                <div className="absolute -bottom-4 -left-4 w-8 h-8 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full shadow-lg"></div>
+                <div className="absolute -top-2 left-1/4 w-4 h-4 bg-blue-100 rounded-full shadow-sm"></div>
               </div>
               
               {/* Additional floating elements */}
-              <div className="absolute top-10 -left-8 bg-white/80 p-3 rounded-xl shadow-xl border border-white/30">
-                <Zap className="w-6 h-6 text-green-600" />
+              <div className="absolute top-10 -left-8 bg-white p-3 rounded-xl shadow-xl border border-gray-200">
+                <Zap className="w-6 h-6 text-blue-500" />
               </div>
               
-              <div className="absolute bottom-20 -right-8 bg-white/80 p-3 rounded-xl shadow-xl border border-white/30">
-                <Target className="w-6 h-6 text-emerald-600" />
+              <div className="absolute bottom-20 -right-8 bg-white p-3 rounded-xl shadow-xl border border-gray-200">
+                <Target className="w-6 h-6 text-indigo-500" />
               </div>
             </div>
           </div>
@@ -145,22 +145,22 @@ const About = () => {
                   return (
                     <div
                       key={index}
-                      className={`group flex flex-col p-6 bg-white/75 rounded-3xl border border-white/40 shadow-2xl hover:shadow-3xl transition-all duration-700 transform min-h-[280px] ${
+                      className={`group flex flex-col p-6 bg-white rounded-3xl border border-gray-200 shadow-2xl hover:shadow-3xl transition-all duration-700 transform min-h-[280px] ${
                         animatedItems[item.delay] ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
-                      } hover:scale-105 hover:bg-white/90 hover:-translate-y-1`}
+                      } hover:scale-105 hover:bg-gray-50 hover:-translate-y-1`}
                     >
                       <div className="flex items-start space-x-4 mb-4">
-                        <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+                        <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
                           <Icon className="w-6 h-6 text-white" />
                         </div>
-                        <h4 className="text-lg font-bold text-gray-800 group-hover:text-green-700 transition-colors duration-300 leading-tight">{item.title}</h4>
+                        <h4 className="text-xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-300 leading-tight">{item.title}</h4>
                       </div>
                       <div className="flex-1">
-                        <p className="text-gray-600 text-sm leading-relaxed group-hover:text-gray-700 transition-colors duration-300">{item.description}</p>
+                        <p className="text-gray-600 text-base leading-relaxed group-hover:text-gray-700 transition-colors duration-300">{item.description}</p>
                       </div>
                       <div className="mt-4 flex justify-end">
-                        <div className="group-hover:bg-gradient-to-r group-hover:from-green-500 group-hover:to-emerald-500 p-2 rounded-lg transition-all duration-300">
-                          <ArrowRight className="w-5 h-5 text-green-500 group-hover:text-white group-hover:translate-x-1 transition-all duration-300" />
+                        <div className="group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-indigo-500 p-2 rounded-lg transition-all duration-300">
+                          <ArrowRight className="w-5 h-5 text-blue-500 group-hover:text-white group-hover:translate-x-1 transition-all duration-300" />
                         </div>
                       </div>
                     </div>
@@ -177,12 +177,12 @@ const About = () => {
           <div className={`transform transition-all duration-1000 delay-1000 ${
             animatedItems.quote ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}>
-            <div className="relative p-8 bg-gradient-to-r from-green-500/15 to-emerald-500/15 rounded-3xl border border-white/30 shadow-2xl">
-              <div className="absolute top-4 left-4 text-5xl text-green-500/40 font-serif">"</div>
+            <div className="relative p-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-3xl border border-blue-200 shadow-2xl">
+              <div className="absolute top-4 left-4 text-5xl text-blue-400 font-serif">"</div>
               <p className="text-2xl font-medium text-gray-800 italic text-center pt-6 px-8">
                 We don't just build batteries—we architect energy ecosystems.
               </p>
-              <div className="absolute bottom-4 right-4 text-5xl text-green-500/40 font-serif rotate-180">"</div>
+              <div className="absolute bottom-4 right-4 text-5xl text-blue-400 font-serif rotate-180">"</div>
             </div>
           </div>
 
@@ -190,7 +190,7 @@ const About = () => {
           <div className={`transform transition-all duration-1000 delay-1200 flex justify-center ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}>
-            <button className="group relative bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-12 py-6 rounded-2xl font-bold transition-all duration-500 flex items-center space-x-4 shadow-2xl hover:shadow-3xl transform hover:scale-110 hover:-translate-y-1 text-xl">
+            <button className="group relative bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white px-12 py-6 rounded-2xl font-bold transition-all duration-500 flex items-center space-x-4 shadow-2xl hover:shadow-3xl transform hover:scale-110 hover:-translate-y-1 text-xl">
               <span className="relative z-10">Explore Our Solutions</span>
               <ArrowRight size={28} className="relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
             </button>
