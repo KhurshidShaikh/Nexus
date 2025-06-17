@@ -44,6 +44,7 @@ const Navbar = () => {
   };
 
   const navLinks = [
+    { name: 'Home', path: '/', sectionId: 'home' },
     { name: 'About', path: '/about', sectionId: 'about' },
     { name: 'Services', path: '/services', sectionId: 'services' },
     { name: 'Customers', path: '/customers', sectionId: 'customers' },
@@ -51,7 +52,10 @@ const Navbar = () => {
   ];
 
   const handleNavClick = (link) => {
-    if (location.pathname === '/') {
+    if (link.path === '/') {
+      // If it's the home link, just navigate to home
+      navigate('/');
+    } else if (location.pathname === '/') {
       // If we're on the home page, scroll to section
       scrollToSection(link.sectionId);
     } else {
@@ -87,7 +91,7 @@ const Navbar = () => {
               whileTap={{ scale: 0.95 }}
             >
               <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity duration-300">
-                <img src={nexuslogo} alt="logo" className='w-20 h-18 rounded-sm' />
+                <img src={nexuslogo} alt="logo" className='w-16 h-16 rounded-sm' />
                 <span className="text-white font-bold text-xl tracking-wide">Nexus</span>
               </Link>
             </motion.div>
@@ -153,69 +157,80 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+      </motion.nav>
 
-        {/* Mobile Navigation Overlay */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, x: "100%" }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: "100%" }}
-              transition={{ type: "spring", damping: 20 }}
-              className="md:hidden fixed inset-0 z-40"
+      {/* Mobile Navigation Overlay - Outside navbar */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", damping: 20 }}
+            className="md:hidden fixed inset-0 z-[60]"
+            style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }}
+          >
+            <div 
+              className="absolute inset-0"
+              onClick={() => setIsOpen(false)}
+            />
+            
+            {/* Mobile Sidebar */}
+            <motion.div 
+              className="absolute top-0 right-0 h-full w-80 max-w-[80vw] border-l border-gray-800 shadow-2xl"
+              style={{ 
+                backgroundColor: '#111827',
+                backgroundImage: 'none'
+              }}
             >
               <div 
-                className="absolute inset-0 bg-gray-900/80 backdrop-blur-sm"
-                onClick={() => setIsOpen(false)}
-              />
-              
-              {/* Mobile Sidebar */}
-              <motion.div 
-                className="absolute top-0 right-0 h-full w-80 max-w-[80vw] bg-gray-900/95 backdrop-blur-xl border-l border-gray-800 shadow-lg"
+                className="p-6 h-full" 
+                style={{ 
+                  backgroundColor: '#111827',
+                  backgroundImage: 'none'
+                }}
               >
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-8">
-                    <div className="flex items-center space-x-2">
-                      <img src={nexuslogo} alt="logo" className='w-12 h-12 rounded-sm' />
-                      <span className="text-white font-bold text-xl">Nexus</span>
-                    </div>
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      onClick={() => setIsOpen(false)}
-                      className="p-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg transition-all duration-300"
-                    >
-                      <X size={24} />
-                    </motion.button>
+                <div className="flex items-center justify-between mb-8">
+                  <div className="flex items-center space-x-2">
+                    <img src={nexuslogo} alt="logo" className='w-10 h-9 rounded-sm' />
+                    <span className="text-white font-bold text-lg">Nexus</span>
                   </div>
-                  
-                  <nav className="space-y-4">
-                    {navLinks.map((link, index) => (
-                      <motion.div
-                        key={link.name}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                      >
-                        <Link
-                          to={link.path}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handleNavClick(link);
-                          }}
-                          className="block w-full py-3 px-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg transition-all duration-300 font-medium text-left"
-                        >
-                          {link.name}
-                        </Link>
-                      </motion.div>
-                    ))}
-                  </nav>
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => setIsOpen(false)}
+                    className="p-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg transition-all duration-300"
+                  >
+                    <X size={24} />
+                  </motion.button>
                 </div>
-              </motion.div>
+                
+                <nav className="space-y-4">
+                  {navLinks.map((link, index) => (
+                    <motion.div
+                      key={link.name}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <Link
+                        to={link.path}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleNavClick(link);
+                        }}
+                        className="block w-full py-3 px-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg transition-all duration-300 font-medium text-left"
+                      >
+                        {link.name}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </nav>
+              </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <style jsx>{`
         @keyframes fade-in {

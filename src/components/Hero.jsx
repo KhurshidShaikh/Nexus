@@ -93,17 +93,17 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Enhanced background animation with green theme
+  // Enhanced background animation with much slower, professional movement
   useEffect(() => {
     const blobs = document.querySelectorAll('.background-blob');
     
     const animateBlobs = () => {
       blobs.forEach((blob, index) => {
-        const time = Date.now() * 0.0008; // Slightly slower
-        const x = Math.sin(time * 0.3 + index * 0.5) * 35 + Math.cos(time * 0.2 + index) * 18;
-        const y = Math.cos(time * 0.4 + index * 0.3) * 25 + Math.sin(time * 0.25 + index) * 12;
-        const scale = 1 + Math.sin(time * 0.5 + index * 0.7) * 0.15;
-        const rotate = time * 8 + index * 25;
+        const time = Date.now() * 0.0002; // Much slower: reduced from 0.0008 to 0.0002
+        const x = Math.sin(time * 0.1 + index * 0.3) * 15 + Math.cos(time * 0.08 + index) * 8; // Reduced movement range
+        const y = Math.cos(time * 0.12 + index * 0.2) * 12 + Math.sin(time * 0.09 + index) * 6; // Reduced movement range
+        const scale = 1 + Math.sin(time * 0.15 + index * 0.4) * 0.08; // Reduced scale variation
+        const rotate = time * 2 + index * 10; // Much slower rotation
         
         blob.style.transform = `translate(${x}px, ${y}px) scale(${scale}) rotate(${rotate}deg)`;
       });
@@ -254,23 +254,12 @@ const Hero = () => {
               >
                 <div className="flex items-center space-x-4 mb-6">
                   <motion.span 
-                    className="text-6xl lg:text-8xl font-light text-green-100 transition-all duration-500"
+                    className="text-6xl lg:text-8xl font-light text-gray-300 transition-all duration-500"
                     style={{ 
                       filter: textHover ? 'url(#textHoverGooey)' : 'url(#textGooey)',
                       transform: textHover ? 'scale(1.05)' : 'scale(1)'
                     }}
-                    animate={{ 
-                      textShadow: textHover ? [
-                        '0 0 20px rgba(34, 197, 94, 0.4)',
-                        '0 0 30px rgba(22, 163, 74, 0.6)',
-                        '0 0 20px rgba(34, 197, 94, 0.4)'
-                      ] : [
-                        '0 0 10px rgba(34, 197, 94, 0.3)',
-                        '0 0 20px rgba(22, 163, 74, 0.4)',
-                        '0 0 10px rgba(34, 197, 94, 0.3)'
-                      ]
-                    }}
-                    transition={{ duration: textHover ? 1.5 : 2, repeat: Infinity }}
+                    transition={{ duration: 0.3 }}
                   >
                     {slides[currentSlide].number}
                   </motion.span>
@@ -292,18 +281,7 @@ const Hero = () => {
                     filter: textHover ? 'url(#textHoverGooey)' : 'url(#textGooey)',
                     transform: textHover ? 'scale(1.02)' : 'scale(1)'
                   }}
-                  animate={{ 
-                    textShadow: textHover ? [
-                      '0 0 15px rgba(34, 197, 94, 0.3)',
-                      '0 0 25px rgba(22, 163, 74, 0.4)',
-                      '0 0 15px rgba(34, 197, 94, 0.3)'
-                    ] : [
-                      '0 0 5px rgba(34, 197, 94, 0.2)',
-                      '0 0 15px rgba(22, 163, 74, 0.3)',
-                      '0 0 5px rgba(34, 197, 94, 0.2)'
-                    ]
-                  }}
-                  transition={{ duration: textHover ? 2 : 3, repeat: Infinity }}
+                  transition={{ duration: 0.3 }}
                 >
                   {slides[currentSlide].title}
                 </motion.h1>
