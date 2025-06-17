@@ -14,7 +14,7 @@ const App = () => {
   return (
     <>
       <ScrollToTop />
-      <div className="overflow-x-hidden min-h-screen w-full text-gray-800 bg-white">
+      <div className="overflow-x-hidden w-full text-gray-800 bg-white">
         <Navbar />
         <div className="pt-20">
           <Routes>
@@ -26,15 +26,35 @@ const App = () => {
                 <Features />
                 <Customers />
                 <Contact />
+                <Footer />
               </>
             } />
-            <Route path='/about' element={<About/>} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/customers" element={<Customers />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path='/about' element={
+              <>
+                <About />
+                <Footer />
+              </>
+            } />
+            <Route path="/services" element={
+              <>
+                <Services />
+                <Footer />
+              </>
+            } />
+            <Route path="/customers" element={
+              <>
+                <Customers />
+                <Footer />
+              </>
+            } />
+            <Route path="/contact" element={
+              <>
+                <Contact />
+                <Footer />
+              </>
+            } />
           </Routes>
         </div>
-        <Footer />
       </div>
     </>
   )
