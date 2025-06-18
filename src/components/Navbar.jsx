@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Zap } from 'lucide-react';
-import nexuslogo from "../assets/nexuslogo.png"
+import nexuslogo from "../assets/NexusEnergy.png"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
