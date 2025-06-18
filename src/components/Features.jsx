@@ -68,9 +68,9 @@ const Features = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight select-none">
             The Nexus Technological
-            <span className="text-blue-600"> Vanguard</span>
+            <span className="text-blue-600 select-none"> Vanguard</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Our proprietary energy architectures embody quantum leaps in
@@ -131,7 +131,7 @@ const Features = () => {
                     {headers.map((title, idx) => (
                       <th
                         key={idx}
-                        onClick={() => setSelectedIdx(idx + 1)}
+                        onMouseOver={() => setSelectedIdx(idx + 1)}
                         className={`p-4 md:p-6 text-left font-bold cursor-pointer transition-all duration-200 text-sm md:text-base ${
                           selectedIdx === idx + 1
                             ? "bg-gray-800 text-white shadow text-base md:text-lg"

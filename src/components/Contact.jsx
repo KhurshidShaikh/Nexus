@@ -190,12 +190,12 @@ ${formData.name}
               <MessageSquare className="w-6 h-6 text-white" />
             </div>
             <div>
-              <span className="text-sm text-blue-600 uppercase tracking-wider font-medium">Get In Touch</span>
+              <span className="text-sm text-blue-600 uppercase tracking-wider font-medium select-none">Get In Touch</span>
               <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full mt-1"></div>
             </div>
           </div>
           
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 leading-tight mb-6">
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 leading-tight mb-6 select-none">
             {'Let\'s Build The Future'.split(' ').map((word, index) => (
               <span
                 key={index}

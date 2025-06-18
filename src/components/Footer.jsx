@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Phone, Mail, MapPin, ArrowUp, Zap, Battery, Shield, Award, ExternalLink, Heart } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import nexuslogo from "../assets/nexuslogo.png"
+import nexuslogo from "../assets/NexusEnergy.png"
 
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(false);
