@@ -187,14 +187,7 @@ const About = () => {
           </div>
 
           {/* CTA Button */}
-          <div className={`transform transition-all duration-1000 delay-1200 flex justify-center ${
-            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-          }`}>
-            <button className="group relative bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white px-8 md:px-12 py-4 md:py-6 rounded-2xl font-bold transition-all duration-500 flex items-center space-x-3 md:space-x-4 shadow-2xl hover:shadow-3xl transform hover:scale-110 hover:-translate-y-1 text-lg md:text-xl">
-              <span className="relative z-10">Explore Our Solutions</span>
-              <ArrowRight size={24} className="relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
-            </button>
-          </div>
+        
         </div>
       </div>
 
