@@ -120,54 +120,26 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative min-h-screen overflow-hidden bg-gradient-to-br from-blue-100/80 via-indigo-100/60 to-blue-100/80 py-20">
-      {/* Enhanced Modern Background Elements - Light Theme */}
+    <footer className="relative bg-gradient-to-br from-blue-100/80 via-indigo-100/60 to-blue-100/80 py-8 md:py-12">
+      {/* Simplified Background Elements */}
       <div className="absolute inset-0">
-        {/* Modern gradient overlays - Enhanced for blue background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-200/40 via-indigo-200/20 to-blue-200/30"></div>
-        <div className="absolute inset-0 bg-gradient-to-tr from-indigo-200/30 via-transparent to-blue-200/20"></div>
+        {/* Simple gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-200/30 via-indigo-200/20 to-blue-200/25"></div>
         
-        {/* Larger, more vibrant geometric shapes - Enhanced */}
-        <div className="absolute top-16 right-8 w-96 h-96 bg-gradient-to-br from-blue-300/30 to-indigo-400/25 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-24 left-6 w-80 h-80 bg-gradient-to-tr from-indigo-300/35 to-blue-400/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-r from-blue-200/40 to-indigo-300/35 rounded-full blur-2xl animate-pulse delay-500"></div>
+        {/* Minimal floating elements */}
+        <div className="absolute top-8 right-8 w-32 h-32 bg-gradient-to-br from-blue-300/20 to-indigo-400/15 rounded-full blur-2xl animate-pulse"></div>
+        <div className="absolute bottom-8 left-6 w-24 h-24 bg-gradient-to-tr from-indigo-300/25 to-blue-400/20 rounded-full blur-2xl animate-pulse delay-1000"></div>
         
-        {/* Additional floating elements - Enhanced */}
-        <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-gradient-to-br from-blue-300/25 to-indigo-400/20 rounded-full blur-xl animate-pulse delay-1500"></div>
-        <div className="absolute bottom-1/3 left-1/5 w-40 h-40 bg-gradient-to-tl from-indigo-300/30 to-blue-400/25 rounded-full blur-2xl animate-pulse delay-2000"></div>
-        
-        {/* Modern grid pattern with enhanced opacity */}
-        <div className="absolute inset-0 opacity-[0.05]" style={{
+        {/* Simple grid pattern */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
           backgroundImage: `radial-gradient(circle at 1px 1px, #3b82f6 1px, transparent 0)`,
           backgroundSize: '50px 50px'
         }}></div>
-        
-        {/* More floating orbs with varied sizes and colors - Enhanced */}
-        <div className="absolute top-32 left-1/4 w-8 h-8 bg-blue-400/60 rounded-full animate-bounce delay-300"></div>
-        <div className="absolute bottom-48 right-1/3 w-5 h-5 bg-indigo-400/70 rounded-full animate-bounce delay-700"></div>
-        <div className="absolute top-2/3 left-1/8 w-4 h-4 bg-blue-300/80 rounded-full animate-bounce delay-1000"></div>
-        <div className="absolute top-1/3 right-1/6 w-6 h-6 bg-indigo-300/65 rounded-full animate-bounce delay-500"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-blue-400/75 rounded-full animate-bounce delay-1200"></div>
-        
-        {/* Enhanced gradient overlays */}
-        <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-blue-100/90 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-blue-100/80 to-transparent"></div>
-        
-        {/* Subtle animated lines - Enhanced */}
-        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/40 to-transparent animate-pulse"></div>
-        <div className="absolute bottom-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-400/40 to-transparent animate-pulse delay-1000"></div>
-        
-        {/* Modern mesh gradient effect - Enhanced */}
-        <div className="absolute inset-0 opacity-25" style={{
-          background: `radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-                      radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-                      radial-gradient(circle at 40% 40%, rgba(147, 197, 253, 0.1) 0%, transparent 50%)`
-        }}></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-16 py-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 py-6 md:py-8">
         {/* Main Footer Content */}
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-6 md:gap-8">
           
           {/* Company Logo & Description */}
           <motion.div 
@@ -179,24 +151,24 @@ const Footer = () => {
             <motion.div 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="mb-6"
+              className="mb-3 md:mb-4"
             >
-              <Link to="/" className="flex items-center space-x-3 mb-4">
-                <img src={nexuslogo} alt="logo" className='w-20 h-20 rounded-sm' />
+              <Link to="/" className="flex items-center space-x-3 mb-2 md:mb-3">
+                <img src={nexuslogo} alt="logo" className='w-14 h-14 md:w-16 md:h-16 rounded-sm' />
                 <div>
-                  <h3 className="text-2xl font-bold text-gray-800">Nexus Energy</h3>
+                  <h3 className="text-lg md:text-xl font-bold text-gray-800">Nexus Energy</h3>
                   <p className="text-blue-600 text-sm">Solutions</p>
                 </div>
               </Link>
             </motion.div>
-            <p className="text-gray-600 text-sm leading-relaxed mb-6">
+            <p className="text-gray-600 text-sm leading-relaxed mb-3 md:mb-4">
               Powering the future with innovative energy storage solutions. 
               We deliver cutting-edge battery systems that transform how businesses 
               manage and store energy.
             </p>
 
             {/* Key Features */}
-            <div className="space-y-3">
+            <div className="space-y-2">
               <div className="flex items-center space-x-3 text-sm text-gray-600">
                 <Battery className="w-4 h-4 text-blue-500" />
                 <span>Advanced Battery Technology</span>
@@ -219,26 +191,26 @@ const Footer = () => {
             transition={{ delay: 0.4 }}
             className="transform transition-all duration-1000 delay-200"
           >
-            <h4 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center mr-3">
-                <Phone className="w-4 h-4 text-white" />
+            <h4 className="text-lg font-bold text-gray-800 mb-3 md:mb-4 flex items-center">
+              <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center mr-2">
+                <Phone className="w-3 h-3 text-white" />
               </div>
               Get In Touch
             </h4>
 
-            <div className="space-y-3">
+            <div className="space-y-2">
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
                 return (
                   <div key={index} className="group">
                     <a
                       href={info.action}
-                      className="flex items-center space-x-3 p-3 rounded-xl bg-white/90 hover:bg-white transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+                      className="flex items-center space-x-2 p-2 rounded-xl bg-white/90 hover:bg-white transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
                     >
-                      <Icon className="w-5 h-5 text-blue-500 group-hover:text-blue-600 transition-colors duration-300" />
+                      <Icon className="w-4 h-4 text-blue-500 group-hover:text-blue-600 transition-colors duration-300" />
                       <div>
                         <p className="text-xs text-gray-500 uppercase tracking-wider">{info.label}</p>
-                        <p className="text-gray-800 font-medium group-hover:text-blue-600 transition-colors duration-300">
+                        <p className="text-gray-800 text-sm font-medium group-hover:text-blue-600 transition-colors duration-300">
                           {info.value}
                         </p>
                       </div>
@@ -253,19 +225,19 @@ const Footer = () => {
                   href="https://maps.google.com/?q=508+Rosa+Bella+Towers+Waghbil+Ghodbunder+Road+Thane+West+Mumbai+400815"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start space-x-3 p-3 rounded-xl bg-white/90 hover:bg-white transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+                  className="flex items-start space-x-2 p-2 rounded-xl bg-white/90 hover:bg-white transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
                 >
-                  <MapPin className="w-5 h-5 text-blue-500 group-hover:text-blue-600 transition-colors duration-300 flex-shrink-0 mt-1" />
+                  <MapPin className="w-4 h-4 text-blue-500 group-hover:text-blue-600 transition-colors duration-300 flex-shrink-0 mt-1" />
                   <div>
                     <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Office Address</p>
-                    <div className="text-gray-800 text-sm group-hover:text-blue-600 transition-colors duration-300">
+                    <div className="text-gray-800 text-xs group-hover:text-blue-600 transition-colors duration-300">
                       <p>508, Rosa Bella Towers</p>
                       <p>Waghbil, Ghodbunder Road</p>
                       <p>Thane West (Mumbai)-400815</p>
                       <p>Maharashtra, India</p>
                     </div>
                   </div>
-                  <ExternalLink className="w-4 h-4 text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <ExternalLink className="w-3 h-3 text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
               </div>
             </div>
@@ -278,21 +250,21 @@ const Footer = () => {
             transition={{ delay: 0.6 }}
             className="transform transition-all duration-1000 delay-400"
           >
-            <h4 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center mr-3">
-                <Battery className="w-4 h-4 text-white" />
+            <h4 className="text-lg font-bold text-gray-800 mb-3 md:mb-4 flex items-center">
+              <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center mr-2">
+                <Battery className="w-3 h-3 text-white" />
               </div>
               Our Services
             </h4>
 
-            <div className="space-y-3">
+            <div className="space-y-2">
               {services.map((service, index) => (
                 <div
                   key={index}
-                  className="group flex items-center space-x-3 p-2 rounded-lg hover:bg-white/80 transition-all duration-300 cursor-pointer"
+                  className="group flex items-center space-x-2 p-2 rounded-lg hover:bg-white/80 transition-all duration-300 cursor-pointer"
                 >
-                  <div className="w-2 h-2 bg-blue-500 rounded-full group-hover:bg-blue-600 transition-colors duration-300"></div>
-                  <span className="text-gray-700 text-sm group-hover:text-gray-800 group-hover:translate-x-1 transition-all duration-300">
+                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full group-hover:bg-blue-600 transition-colors duration-300"></div>
+                  <span className="text-gray-700 text-xs group-hover:text-gray-800 group-hover:translate-x-1 transition-all duration-300">
                     {service}
                   </span>
                 </div>
@@ -307,14 +279,14 @@ const Footer = () => {
             transition={{ delay: 0.8 }}
             className="transform transition-all duration-1000 delay-600"
           >
-            <h4 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center mr-3">
-                <Zap className="w-4 h-4 text-white" />
+            <h4 className="text-lg font-bold text-gray-800 mb-3 md:mb-4 flex items-center">
+              <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center mr-2">
+                <Zap className="w-3 h-3 text-white" />
               </div>
               Quick Links
             </h4>
 
-            <div className="space-y-3">
+            <div className="space-y-2">
               {companyLinks.map((link, index) => (
                 <motion.div
                   key={index}
@@ -325,14 +297,14 @@ const Footer = () => {
                 >
                   <button
                     onClick={() => handleLinkClick(link.path)}
-                    className="w-full flex items-center space-x-3 p-2 rounded-lg hover:bg-white/80 transition-all duration-300"
+                    className="w-full flex items-center space-x-2 p-2 rounded-lg hover:bg-white/80 transition-all duration-300"
                   >
                     <motion.div 
-                      className="w-2 h-2 bg-blue-500 rounded-full"
+                      className="w-1.5 h-1.5 bg-blue-500 rounded-full"
                       whileHover={{ scale: 1.5 }}
                       transition={{ duration: 0.2 }}
                     />
-                    <span className="text-gray-700 text-sm group-hover:text-gray-800 transition-all duration-300">
+                    <span className="text-gray-700 text-xs group-hover:text-gray-800 transition-all duration-300">
                       {link.label}
                     </span>
                   </button>
@@ -343,15 +315,15 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className={`mt-16 pt-8 border-t border-gray-200 transform transition-all duration-1000 delay-800 ${
+        <div className={`mt-6 md:mt-8 pt-4 md:pt-6 border-t border-gray-200 transform transition-all duration-1000 delay-800 ${
           animatedItems.bottom ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}>
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-6">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
+            <div className="flex flex-col md:flex-row items-center space-y-1 md:space-y-0 md:space-x-6">
               <div className="flex items-center space-x-2">
-                <img src={nexuslogo} alt="Nexus Energy" className="w-6 h-6 rounded-sm" />
-                <p className="text-gray-600 text-sm font-medium">
-                  © 2025 Nexus Energy Solutions. All rights reserved.
+                <img src={nexuslogo} alt="Nexus Energy" className="w-4 h-4 md:w-5 md:h-5 rounded-sm" />
+                <p className="text-gray-600 text-xs font-medium">
+                  © 2024 Nexus Energy Solutions. All rights reserved.
                 </p>
               </div>
               <div className="hidden md:flex items-center space-x-4 text-xs text-gray-500">
@@ -363,9 +335,9 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className="flex items-center space-x-2 text-gray-500 text-sm">
+            <div className="flex items-center space-x-2 text-gray-500 text-xs">
               <span>Made with</span>
-              <Heart className="w-4 h-4 text-red-500 animate-pulse" />
+              <Heart className="w-3 h-3 text-red-500 animate-pulse" />
               <span>for a sustainable future</span>
             </div>
           </div>
