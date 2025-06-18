@@ -140,12 +140,12 @@ const Customers = () => {
               <Users className="w-6 h-6 text-white" />
             </div>
             <div>
-              <span className="text-sm text-blue-600 uppercase tracking-wider font-medium">Our Work</span>
+              <span className="text-sm text-blue-600 uppercase tracking-wider font-medium select-none">Our Work</span>
               <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full mt-1"></div>
             </div>
           </div>
           
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 leading-tight mb-6">
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 leading-tight mb-6 select-none">
             {'Powering Global Innovation'.split(' ').map((word, index) => (
               <span
                 key={index}
@@ -233,12 +233,12 @@ const Customers = () => {
                 <Building2 className="w-6 h-6 text-white" />
               </div>
               <div>
-                <span className="text-sm text-indigo-600 uppercase tracking-wider font-medium">Trusted Partners</span>
+                <span className="text-sm text-indigo-600 uppercase tracking-wider font-medium select-none">Trusted Partners</span>
                 <div className="w-16 h-1 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full mt-1"></div>
               </div>
             </div>
             
-            <h3 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+            <h3 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4 select-none">
               Global Industry Leaders
             </h3>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
