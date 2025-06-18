@@ -53,20 +53,20 @@ const Navbar = () => {
 
   const navItems = [
     { label: "Home", path: "/" },
-    { label: "About", path: "/#about" },
+    { label: "About", path: "/about" },
     { 
       label: "Services", 
-      path: "/#services",
+      path: "/services",
       dropdown: [
-        { label: "E-Mobility", path: "/services#emobility" },
-        { label: "Renewable Energy", path: "/services#renewable" },
-        { label: "Defense & Aerospace", path: "/services#defense" },
-        { label: "Industrial", path: "/services#industrial" },
-        { label: "Agricultural", path: "/services#agricultural" }
+        { label: "E-Mobility", path: "/services" },
+        { label: "Renewable Energy", path: "/services" },
+        { label: "Defense & Aerospace", path: "/services" },
+        { label: "Industrial", path: "/services" },
+        { label: "Agricultural", path: "/services" }
       ]
     },
-    { label: "Customers", path: "/#customers" },
-    { label: "Contact", path: "/#contact" }
+    { label: "Customers", path: "/customers" },
+    { label: "Contact", path: "/contact" }
   ];
 
   return (
@@ -158,7 +158,7 @@ const Navbar = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => handleLinkClick('/#contact')}
+              onClick={() => handleLinkClick('/contact')}
               className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               Get Started
@@ -242,7 +242,16 @@ const Navbar = () => {
               ))}
               
               {/* Mobile CTA Button */}
-              
+              <div className="pt-4 border-t border-blue-300/50">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => handleLinkClick('/contact')}
+                  className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  Get Started
+                </motion.button>
+              </div>
             </div>
           </motion.div>
         )}

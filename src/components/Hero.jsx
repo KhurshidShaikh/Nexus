@@ -11,7 +11,6 @@ const Hero = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
   const containerRef = useRef(null)
-  const splashRef = useRef(null)
   
   const fullText = "NEXUS ENERGY"
 
@@ -36,48 +35,6 @@ const Hero = () => {
     return () => clearInterval(cursorInterval)
   }, [])
 
-  // Splash cursor effect
-  const createSplash = useCallback((x, y) => {
-    if (!splashRef.current) return
-
-    const splash = document.createElement('div')
-    splash.className = 'splash-particle'
-    
-    const colors = [
-      'rgba(59, 130, 246, 0.8)', // Blue
-      'rgba(37, 99, 235, 0.8)', // Indigo
-      'rgba(29, 78, 216, 0.8)', // Dark blue
-      'rgba(147, 197, 253, 0.8)', // Light blue
-      'rgba(219, 234, 254, 0.8)', // Very light blue
-    ]
-    
-    const size = Math.random() * 20 + 10
-    const color = colors[Math.floor(Math.random() * colors.length)]
-    
-    splash.style.cssText = `
-      position: absolute;
-      left: ${x}px;
-      top: ${y}px;
-      width: ${size}px;
-      height: ${size}px;
-      background: ${color};
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      z-index: 1000;
-      animation: splashAnimation 0.8s ease-out forwards;
-    `
-
-    splashRef.current.appendChild(splash)
-
-    // Remove splash after animation
-    setTimeout(() => {
-      if (splash.parentNode) {
-        splash.remove()
-      }
-    }, 800)
-  }, [])
-
   const handleMouseMove = useCallback((e) => {
     if (!containerRef.current) return
 
@@ -88,11 +45,7 @@ const Hero = () => {
     }
 
     setMousePos(newMousePos)
-
-    if (isHovering && Math.random() > 0.7) {
-      createSplash(newMousePos.x, newMousePos.y)
-    }
-  }, [isHovering, createSplash])
+  }, [])
 
   // Function to scroll to customers section
   const scrollToCustomers = () => {
@@ -113,9 +66,6 @@ const Hero = () => {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      {/* Splash container */}
-      <div ref={splashRef} className="absolute inset-0 pointer-events-none z-50" />
-
       {/* Hyperspeed Background Effect */}
       <HyperspeedBackground />
 
@@ -152,40 +102,126 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
               className="w-full"
-              style={{ pointerEvents: 'none' }}
             >
               <motion.h1
-                className="text-6xl lg:text-8xl xl:text-9xl font-black text-gray-800 leading-tight mb-8 transition-all duration-700 liquid-text"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-9xl font-black text-gray-800 leading-tight mb-4 transition-all duration-700 liquid-text cursor-pointer"
                 style={{
                   filter: textHover ? "url(#textLiquid)" : "none",
                   transform: textHover ? "scale(1.02)" : "scale(1)",
                 }}
+                onMouseEnter={() => setTextHover(true)}
+                onMouseLeave={() => setTextHover(false)}
+                whileHover={{
+                  scale: 1.05,
+                  y: -5
+                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
               >
                 <span className="inline-block">
-                  {displayText}
+                  {displayText.split('').map((char, index) => (
+                    <motion.span
+                      key={index}
+                      className={`inline-block ${char === ' ' ? 'w-4 sm:w-6 md:w-8 lg:w-12 xl:w-16' : ''}`}
+                      whileHover={{
+                        y: -10,
+                        rotate: 5,
+                        scale: 1.2
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
                   <span 
-                    className={`inline-block w-2 h-16 lg:h-20 xl:h-24 bg-blue-500 ml-1 transition-opacity duration-150 ${
+                    className={`inline-block w-2 bg-blue-500 ml-1 transition-opacity duration-150 ${
                       showCursor ? 'opacity-100' : 'opacity-0'
                     }`}
                     style={{ 
                       animation: showCursor ? 'blink 1s infinite' : 'none',
-                      verticalAlign: 'top'
+                      height: '0.8em',
+                      verticalAlign: 'baseline',
+                      marginTop: '0.3em'
                     }}
                   />
                 </span>
               </motion.h1>
 
-              <motion.p
-                className="text-xl lg:text-2xl xl:text-3xl text-gray-600 leading-relaxed mb-12 max-w-4xl mx-auto font-light liquid-text"
+              {/* Dynamic Subtitle */}
+              <motion.h2
+                className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-700 mb-6 cursor-pointer animate-float"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                whileHover={{
+                  scale: 1.05,
+                  y: -3
+                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                Empowering a Sustainable Future Through Efficient Energy Storage
+                <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 bg-clip-text text-transparent">
+                  Powering Tomorrow's Innovation
+                </span>
+              </motion.h2>
+
+              <motion.p
+                className="text-xl lg:text-2xl xl:text-3xl text-gray-600 leading-relaxed mb-8 max-w-4xl mx-auto font-light liquid-text cursor-pointer animate-gentle-float"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                whileHover={{
+                  scale: 1.02,
+                  y: -2
+                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              >
+                <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent font-semibold">
+                  Revolutionizing Energy Storage
+                </span>{" "}
+                <span className="text-gray-600">
+                  with cutting-edge battery technology for a sustainable tomorrow
+                </span>
               </motion.p>
 
+              {/* Enhanced Subtitle with Key Benefits */}
               <motion.div
-                className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+                className="flex flex-wrap justify-center gap-6 mb-12 text-sm lg:text-base"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+              >
+                <motion.div 
+                  className="flex items-center space-x-2 bg-blue-50 px-4 py-2 rounded-full hover:bg-blue-100 hover:scale-110 hover:shadow-lg transition-all duration-300 cursor-pointer group"
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0 }}
+                  whileHover={{ scale: 1.1, y: -8 }}
+                >
+                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse group-hover:animate-ping"></div>
+                  <span className="text-blue-700 font-medium group-hover:text-blue-800 transition-colors duration-300">99.8% Uptime</span>
+                </motion.div>
+                <motion.div 
+                  className="flex items-center space-x-2 bg-indigo-50 px-4 py-2 rounded-full hover:bg-indigo-100 hover:scale-110 hover:shadow-lg transition-all duration-300 cursor-pointer group"
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  whileHover={{ scale: 1.1, y: -8 }}
+                >
+                  <div className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse group-hover:animate-ping"></div>
+                  <span className="text-indigo-700 font-medium group-hover:text-indigo-800 transition-colors duration-300">40% Cost Reduction</span>
+                </motion.div>
+                <motion.div 
+                  className="flex items-center space-x-2 bg-green-50 px-4 py-2 rounded-full hover:bg-green-100 hover:scale-110 hover:shadow-lg transition-all duration-300 cursor-pointer group"
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                  whileHover={{ scale: 1.1, y: -8 }}
+                >
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse group-hover:animate-ping"></div>
+                  <span className="text-green-700 font-medium group-hover:text-green-800 transition-colors duration-300">Zero Emissions</span>
+                </motion.div>
+              </motion.div>
+
+              {/* Enhanced CTA Section */}
+              <motion.div
+                className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
@@ -209,8 +245,21 @@ const Hero = () => {
                     className="relative z-10 group-hover:translate-x-1 transition-transform duration-300"
                   />
                 </motion.button>
+              </motion.div>
 
-              
+              {/* Trust Indicators */}
+              <motion.div
+                className="text-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
+              >
+                <p className="text-sm text-gray-500 mb-4">Trusted by Industry Leaders</p>
+                <div className="flex justify-center items-center space-x-8 opacity-60">
+                  <div className="text-xs text-gray-400">⚡ ASIL-D Certified</div>
+                  <div className="text-xs text-gray-400">🛡️ ISO 9001:2015</div>
+                  <div className="text-xs text-gray-400">🌱 Green Technology</div>
+                </div>
               </motion.div>
             </motion.div>
           </div>
@@ -227,7 +276,7 @@ const Hero = () => {
         <ChevronDown size={24} className="text-blue-500 opacity-70" />
       </motion.div>
 
-      <style jsx>{`
+      <style>{`
   .liquid-text {
     transition: transform 0.2s ease-out;
   }
@@ -258,18 +307,77 @@ const Hero = () => {
     }
   }
 
-  @keyframes splashAnimation {
-    0% {
-      transform: translate(-50%, -50%) scale(0);
-      opacity: 1;
+  @keyframes gradient-x {
+    0%, 100% {
+      background-position: 0% 50%;
     }
     50% {
-      transform: translate(-50%, -50%) scale(1.5);
-      opacity: 0.8;
+      background-position: 100% 50%;
     }
-    100% {
-      transform: translate(-50%, -50%) scale(2);
-      opacity: 0;
+  }
+
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 3s ease infinite;
+  }
+
+  /* Enhanced hover effects */
+  .liquid-text:hover {
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+
+  /* Glow effect for main text */
+  .liquid-text:hover span {
+    filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.3));
+  }
+
+  /* Magnetic hover effect */
+  .magnetic-hover {
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .magnetic-hover:hover {
+    transform: translateY(-2px) scale(1.02);
+  }
+
+  /* Continuous floating animations */
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .animate-gentle-float {
+    animation: gentleFloat 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes gentleFloat {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  /* Enhanced text animations */
+  .liquid-text:hover {
+    animation: textGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes textGlow {
+    0%, 100% {
+      text-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    }
+    50% {
+      text-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
     }
   }
 `}</style>

@@ -9,6 +9,8 @@ import Features from './components/Features'
 import Customers from './components/Customers'
 import Contact from './components/Contact'
 import ScrollToTop from './components/ScrollToTop'
+import Chatbot from './components/Chatbot'
+import WhatsAppButton from './components/WhatsAppButton'
 
 const App = () => {
   return (
@@ -55,6 +57,8 @@ const App = () => {
             } />
           </Routes>
         </div>
+        <Chatbot />
+        <WhatsAppButton />
       </div>
     </>
   )
